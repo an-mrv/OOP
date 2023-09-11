@@ -19,7 +19,7 @@ public class Tests {
     }
 
     @Test
-    void test2() {
+    void test2() { //test with 1000000 random numbers from -1000000 to 1000000
         int[] arr = new int[1000000];
         for (int i = 0; i < 1000000; i++) {
             arr[i] = (int) ((Math.random() * 2000000) - 1000000);
