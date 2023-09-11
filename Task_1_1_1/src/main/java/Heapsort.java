@@ -1,7 +1,13 @@
+/**
+ * Task_1_1_1 HeapSort algorithm
+ */
+
 public class Heapsort {
-    static void sift(int arr[], int i, int n) {
-        int l = 2 * i + 1, r = 2 * i + 2;
-        int t, largest = i;
+    static void sift(int[] arr, int i, int n) {
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+        int t;
+        int largest = i;
         while (l < n) {
             if (arr[l] > arr[i]) {
                 largest = l;
@@ -16,12 +22,14 @@ public class Heapsort {
                 i = largest;
                 l = 2 * i + 1;
                 r = 2 * i + 2;
-            } else
+            }
+            else {
                 break;
+            }
         }
     }
 
-    static void heap_sort(int arr[]) {
+    static void heap_sort(int[] arr) {
         int n = arr.length;
         int t;
         for (int i = n / 2; i >= 0; i--) {
