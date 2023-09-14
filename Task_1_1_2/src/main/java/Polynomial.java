@@ -1,3 +1,7 @@
+/**
+ * Task_1_1_2
+ */
+
 public class Polynomial {
     private int[] coeff;
     private int deg; //degree of the polynom
@@ -24,21 +28,21 @@ public class Polynomial {
     }
 
     public Polynomial minus(Polynomial a) {
-        Polynomial res = new Polynomial(new int[Math.max(this.deg, a.deg)]);
+        Polynomial res = new Polynomial(new int[Math.max(this.deg, a.deg) + 1]);
         for (int i = 0; i <= this.deg; i++) {
             res.coeff[i] += this.coeff[i];
         }
         for (int i = 0; i <= a.deg; i++) {
-            res.coeff[i] += a.coeff[i];
+            res.coeff[i] -= a.coeff[i];
         }
         return res;
     }
 
     public Polynomial times(Polynomial a) {
-        Polynomial res = new Polynomial(new int[this.deg+a.deg+1]);
+        Polynomial res = new Polynomial(new int[this.deg + a.deg + 1]);
         for (int i = 0; i <= this.deg; i++) {
             for (int j = 0; j <= a.deg; j++) {
-                res.coeff[i+j] += (this.coeff[i] * a.coeff[j]);
+                res.coeff[i + j] += (this.coeff[i] * a.coeff[j]);
             }
         }
         return res;
@@ -65,7 +69,7 @@ public class Polynomial {
     public Polynomial derivative() {
         Polynomial res = new Polynomial(new int[this.deg]);
         for (int j = 1; j <= this.deg; j++) {
-            res.coeff[j-1] = this.coeff[j] * j;
+            res.coeff[j - 1] = this.coeff[j] * j;
         }
         return res;
     }
@@ -73,8 +77,7 @@ public class Polynomial {
     public boolean equality(Polynomial a) {
         if (this.deg != a.deg) {
             return false;
-        }
-        else {
+        } else {
             boolean res = true;
             for (int i = 0; i <= a.deg; i++) {
                 if (this.coeff[i] != a.coeff[i]) {
@@ -87,9 +90,6 @@ public class Polynomial {
     }
 
     public String toString() {
-        while (coeff[deg] == 0 && (deg != 0)) {
-            deg--;
-        }
         if (deg == 0) {
             return "" + coeff[deg];
         }
@@ -103,7 +103,11 @@ public class Polynomial {
             if (coeff[i] == 0) {
                 continue;
             } else if (i == 0) {
-                s = s + " + " + coeff[0];
+                if (coeff[0] > 0) {
+                    s = s + " + " + coeff[0];
+                } else {
+                    s = s + " - " + (-coeff[0]);
+                }
             } else if (i == 1) {
                 if (coeff[1] > 0) {
                     s = s + " + " + coeff[1] + "x";
