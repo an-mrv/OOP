@@ -6,6 +6,9 @@ public class Polynomial {
     private int[] coeff;
     private int deg;
 
+    /**
+     * Creating a polynomial with specified coefficients.
+     */
     public Polynomial(int[] args) {
         int n = args.length;
         coeff = new int[n];
@@ -15,6 +18,9 @@ public class Polynomial {
         }
     }
 
+    /**
+     * Addition of polynomials.
+     */
     public Polynomial plus(Polynomial a) {
         int n = Math.max(a.deg, this.deg);
         Polynomial res = new Polynomial(new int[n + 1]);
@@ -27,6 +33,9 @@ public class Polynomial {
         return res;
     }
 
+    /**
+     * Subtraction of polynomials.
+     */
     public Polynomial minus(Polynomial a) {
         Polynomial res = new Polynomial(new int[Math.max(this.deg, a.deg) + 1]);
         for (int i = 0; i <= this.deg; i++) {
@@ -38,6 +47,9 @@ public class Polynomial {
         return res;
     }
 
+    /**
+     * Multiplication of polynomials.
+     */
     public Polynomial times(Polynomial a) {
         Polynomial res = new Polynomial(new int[this.deg + a.deg + 1]);
         for (int i = 0; i <= this.deg; i++) {
@@ -48,6 +60,9 @@ public class Polynomial {
         return res;
     }
 
+    /**
+     * Calculating the value at a point.
+     */
     public int evaluate(int a) {
         int res = 0;
         for (int i = 0; i <= this.deg; i++) {
@@ -56,6 +71,9 @@ public class Polynomial {
         return res;
     }
 
+    /**
+     * Taking the i`th derivative.
+     */
     public Polynomial differentiate(int a) {
         Polynomial pol = this;
         Polynomial res = this;
@@ -74,6 +92,9 @@ public class Polynomial {
         return res;
     }
 
+    /**
+     * Checking for equality with another polynomial.
+     */
     public boolean equality(Polynomial a) {
         if (this.deg != a.deg) {
             return false;
@@ -89,6 +110,9 @@ public class Polynomial {
         }
     }
 
+    /**
+     * Getting a string representation.
+     */
     public String toString() {
         if (deg == 0) {
             return "" + coeff[deg];
