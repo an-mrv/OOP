@@ -1,8 +1,9 @@
 import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for the task_1_1_2
+ * Tests for the task_1_1_2.
  */
 
 public class Tests {
@@ -23,13 +24,17 @@ public class Tests {
     void test2() {
         Polynomial p1 = new Polynomial(new int[] {-5, 2, 8, -3, -3, 0, 1, 0, 2});
         Polynomial p2 = new Polynomial(new int[] {21, -9, -4, 0, 5, 0, 3});
-        if (!p1.plus(p2).toString().equals("2x^8 + 4x^6 + 2x^4 - 3x^3 + 4x^2 - 7x + 16")) {
+        if (!p1.plus(p2).toString().equals(
+                "2x^8 + 4x^6 + 2x^4 - 3x^3 + 4x^2 - 7x + 16")) {
             fail();
         }
-        if (!p1.minus(p2).toString().equals("2x^8 - 2x^6 - 8x^4 - 3x^3 + 12x^2 + 11x - 26")) {
+        if (!p1.minus(p2).toString().equals(
+                "2x^8 - 2x^6 - 8x^4 - 3x^3 + 12x^2 + 11x - 26")) {
             fail();
         }
-        if (!p1.times(p2).toString().equals("6x^14 + 13x^12 - 12x^10 - 27x^9 + 47x^8 - 18x^7 + 58x^6 + 49x^5 - 93x^4 - 143x^3 + 170x^2 + 87x - 105")) {
+        if (!p1.times(p2).toString().equals(
+                "6x^14 + 13x^12 - 12x^10 - 27x^9 + 47x^8 - 18x^7 + " +
+                        "58x^6 + 49x^5 - 93x^4 - 143x^3 + 170x^2 + 87x - 105")) {
             fail();
         }
     }

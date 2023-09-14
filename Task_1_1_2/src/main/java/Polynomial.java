@@ -1,10 +1,10 @@
 /**
- * Task_1_1_2
+ * Task_1_1_2.
  */
 
 public class Polynomial {
     private int[] coeff;
-    private int deg; //degree of the polynom
+    private int deg;
 
     public Polynomial(int[] args) {
         int n = args.length;
