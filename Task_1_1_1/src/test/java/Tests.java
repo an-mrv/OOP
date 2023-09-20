@@ -1,4 +1,6 @@
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -30,5 +32,13 @@ public class Tests {
                 fail();
             }
         }
+    }
+
+    @Test
+    void test3() {
+        int[] arr = new int[] {};
+        int[] emptyArr = new int[] {};
+        Heapsort.heap_sort(arr);
+        assertArrayEquals(arr, emptyArr);
     }
 }
