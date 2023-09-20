@@ -11,6 +11,9 @@ public class Polynomial {
      */
     public Polynomial(int[] args) {
         int n = args.length;
+        if (n == 0) {
+            System.out.println("The array is empty!");
+        }
         coeff = new int[n];
         deg = n - 1;
         for (int i = 0; i < n; i++) {
@@ -85,9 +88,15 @@ public class Polynomial {
     }
 
     public Polynomial derivative() {
-        Polynomial res = new Polynomial(new int[this.deg]);
-        for (int j = 1; j <= this.deg; j++) {
-            res.coeff[j - 1] = this.coeff[j] * j;
+        Polynomial res;
+        if (this.deg == 0) {
+            res = new Polynomial(new int[1]);
+        }
+        else {
+            res = new Polynomial(new int[this.deg]);
+            for (int j = 1; j <= this.deg; j++) {
+                res.coeff[j - 1] = this.coeff[j] * j;
+            }
         }
         return res;
     }
