@@ -1,10 +1,11 @@
 import java.util.*;
 
 /**
- * Сlass for working with trees
+ * Сlass for working with trees.
+ *
  * @param <T> type for vertex values
  */
-public class Tree <T> implements Iterable<T>{
+public class Tree<T> implements Iterable<T> {
     private T data;
     private Tree<T> parent;
     private ArrayList<Tree<T>> children;
@@ -17,7 +18,7 @@ public class Tree <T> implements Iterable<T>{
     }
 
     private void changeModCountForAncestors() {
-        Tree <T> curParent = this.parent;
+        Tree<T> curParent = this.parent;
         while(curParent != null) {
             curParent.modCount++;
             curParent = curParent.parent;
@@ -25,11 +26,13 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Add the value of a new child
+     * Add the value of a new child.
+     *
      * @param data value for the new vertex
+     *
      * @return child's subtree
      */
-    public Tree <T> addChild(T data) {
+    public Tree<T> addChild(T data) {
         this.modCount++;
         this.changeModCountForAncestors();
         Tree<T> newChild = new Tree<>(data);
@@ -39,10 +42,11 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Add the subtree as a child
+     * Add the subtree as a child.
+     *
      * @param data subtree
      */
-    public void addChild(Tree <T> data) {
+    public void addChild(Tree<T> data) {
         this.modCount++;
         this.changeModCountForAncestors();
         this.children.add(data);
@@ -50,7 +54,7 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Deleting a subtree
+     * Deleting a subtree.
      */
     public void remove() {
         this.modCount++;
@@ -63,8 +67,10 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Checking for equality of two trees
+     * Checking for equality of two trees.
+     *
      * @param obj tree
+     *
      * @return is equal or not
      */
     @Override
@@ -87,7 +93,8 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Iterator for the BFS
+     * Iterator for the BFS.
+     *
      * @return BFS iterator
      */
     @Override
@@ -96,7 +103,8 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Class BfsIterator
+     * Class BfsIterator.
+     *
      * @param <T> type for vertex values
      */
     class BfsIterator<T> implements Iterator<T> {
@@ -111,7 +119,8 @@ public class Tree <T> implements Iterable<T>{
         }
 
         /**
-         * checking that there is the next element
+         * checking that there is the next element.
+         *
          * @return has next element or not
          */
         @Override
@@ -128,7 +137,8 @@ public class Tree <T> implements Iterable<T>{
         }
 
         /**
-         * returns the next element
+         * returns the next element.
+         *
          * @return next element
          */
         @Override
@@ -136,7 +146,7 @@ public class Tree <T> implements Iterable<T>{
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            Tree <T> a = this.deque.pop();
+            Tree<T> a = this.deque.pop();
             for (int i = 0; i < a.children.size(); i++) {
                 if (a.children.get(i).data != null) {
                     this.deque.addLast(a.children.get(i));
@@ -146,16 +156,17 @@ public class Tree <T> implements Iterable<T>{
         }
 
         /**
-         * exception when calling remove
+         * exception when calling remove.
          */
         @Override
-        public void remove() throws ConcurrentModificationException {
+        public void remove() throws ConcurrentModificationException{
             throw new ConcurrentModificationException();
         }
     }
 
     /**
-     * Iterator for the DFS
+     * Iterator for the DFS.
+     *
      * @return DFS iterator
      */
     public Iterator<T> dfsiterator() {
@@ -163,7 +174,8 @@ public class Tree <T> implements Iterable<T>{
     }
 
     /**
-     * Class DfsIterator
+     * Class DfsIterator.
+     *
      * @param <T> type for vertex values
      */
     class DfsIterator<T> implements Iterator<T> {
@@ -179,7 +191,8 @@ public class Tree <T> implements Iterable<T>{
         }
 
         /**
-         * checking that there is the next element
+         * checking that there is the next element.
+         *
          * @return has next element or not
          */
         @Override
@@ -196,7 +209,8 @@ public class Tree <T> implements Iterable<T>{
         }
 
         /**
-         * returns the next element
+         * returns the next element.
+         *
          * @return next element
          */
         @Override
@@ -204,7 +218,7 @@ public class Tree <T> implements Iterable<T>{
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            Tree <T> a = this.stack.pop();
+            Tree<T> a = this.stack.pop();
             for (int i = a.children.size() - 1; i >= 0; i--) {
                 if (a.children.get(i).data != null) {
                     this.stack.addFirst(a.children.get(i));
@@ -215,10 +229,10 @@ public class Tree <T> implements Iterable<T>{
         }
 
         /**
-         * exception when calling remove
+         * exception when calling remove.
          */
         @Override
-        public void remove() throws ConcurrentModificationException {
+        public void remove() throws ConcurrentModificationException{
             throw new ConcurrentModificationException();
         }
     }
