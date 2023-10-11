@@ -11,7 +11,7 @@ public class Tree<T> implements Iterable<T> {
     private ArrayList<Tree<T>> children;
     private int modCount = 0; //modification count
 
-    public Tree(T data){
+    public Tree(T data) {
         this.data = data;
         this.children = new ArrayList<Tree<T>>();
         this.parent = null;
@@ -19,7 +19,7 @@ public class Tree<T> implements Iterable<T> {
 
     private void changeModCountForAncestors() {
         Tree<T> curParent = this.parent;
-        while(curParent != null) {
+        while (curParent != null) {
             curParent.modCount++;
             curParent = curParent.parent;
         }
@@ -124,14 +124,13 @@ public class Tree<T> implements Iterable<T> {
          * @return has next element or not
          */
         @Override
-        public boolean hasNext() throws ConcurrentModificationException{
+        public boolean hasNext() throws ConcurrentModificationException {
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
             if (this.deque.isEmpty()) {
                 return false;
-            }
-            else {
+            } else {
                 return true;
             }
         }
@@ -142,7 +141,7 @@ public class Tree<T> implements Iterable<T> {
          * @return next element
          */
         @Override
-        public T next() throws NoSuchElementException{
+        public T next() throws NoSuchElementException {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
@@ -159,7 +158,7 @@ public class Tree<T> implements Iterable<T> {
          * exception when calling remove.
          */
         @Override
-        public void remove() throws ConcurrentModificationException{
+        public void remove() throws ConcurrentModificationException {
             throw new ConcurrentModificationException();
         }
     }
@@ -196,14 +195,13 @@ public class Tree<T> implements Iterable<T> {
          * @return has next element or not
          */
         @Override
-        public boolean hasNext() throws ConcurrentModificationException{
+        public boolean hasNext() throws ConcurrentModificationException {
             if (expectedModCount != modCount) {
                 throw new ConcurrentModificationException();
             }
             if (this.stack.isEmpty()) {
                 return false;
-            }
-            else {
+            } else {
                 return true;
             }
         }
@@ -214,7 +212,7 @@ public class Tree<T> implements Iterable<T> {
          * @return next element
          */
         @Override
-        public T next() throws NoSuchElementException{
+        public T next() throws NoSuchElementException {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
@@ -232,7 +230,7 @@ public class Tree<T> implements Iterable<T> {
          * exception when calling remove.
          */
         @Override
-        public void remove() throws ConcurrentModificationException{
+        public void remove() throws ConcurrentModificationException {
             throw new ConcurrentModificationException();
         }
     }

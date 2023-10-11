@@ -1,8 +1,6 @@
 import java.util.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -28,17 +26,18 @@ public class Tests {
         var c = tree2.addChild("R2");
         c.addChild("C");
         c.addChild("D");
-        assert(tree1.equals(tree2));
+
+        assert (tree1.equals(tree2));
 
         tree2.addChild("E");
-        assert(!tree1.equals(tree2));
+        assert (!tree1.equals(tree2));
     }
 
     @Test
     void testRemove() {
         Tree<String> tree1 = new Tree<>("R1");
         var a = tree1.addChild("A");
-        var b = a.addChild("B");
+        final var b = a.addChild("B");
         Tree<String> subtree1 = new Tree<>("R2");
         subtree1.addChild("C");
         subtree1.addChild("D");
@@ -47,13 +46,14 @@ public class Tests {
 
         Tree<String> tree2 = new Tree<>("R1");
         Tree<String> subtree2 = new Tree<>("A");
-        var d = subtree2.addChild("B");
+        final var d = subtree2.addChild("B");
         tree2.addChild(subtree2);
         var c = tree2.addChild("R2");
         c.addChild("C");
         c.addChild("D");
         d.remove();
-        assert(tree1.equals(tree2));
+
+        assert (tree1.equals(tree2));
     }
 
     @Test
@@ -74,10 +74,11 @@ public class Tests {
         Tree<Integer> subtree3 = new Tree<>(3);
         subtree3.addChild(5);
         tree3.addChild(subtree3);
-        assert(tree1.equals(tree2));
-        assert(!tree1.equals(tree3));
-        assert(!tree1.equals(null));
-        assert(tree1.equals(tree1));
+
+        assert (tree1.equals(tree2));
+        assert (!tree1.equals(tree3));
+        assert (!tree1.equals(null));
+        assert (tree1.equals(tree1));
     }
 
     @Test
@@ -92,7 +93,7 @@ public class Tests {
 
         ArrayList<String> bfs = new ArrayList<String>();
         Iterator<String> it = tree1.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             var value = it.next();
             bfs.add(value);
         }
@@ -105,7 +106,7 @@ public class Tests {
         Tree<String> tree = new Tree<>("R1");
         tree.remove();
         Iterator<String> it = tree.iterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             fail();
         }
     }
@@ -122,7 +123,7 @@ public class Tests {
 
         ArrayList<String> dfs = new ArrayList<String>();
         Iterator<String> it = tree1.dfsiterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             var value = it.next();
             dfs.add(value);
         }
@@ -135,7 +136,7 @@ public class Tests {
         Tree<String> tree = new Tree<>("R1");
         tree.remove();
         Iterator<String> it = tree.dfsiterator();
-        while(it.hasNext()) {
+        while (it.hasNext()) {
             fail();
         }
     }
@@ -154,7 +155,7 @@ public class Tests {
         ConcurrentModificationException thrown =
                 Assertions.assertThrows(ConcurrentModificationException.class, () -> {
             a.remove();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 it.next();
             }
         });
@@ -179,7 +180,7 @@ public class Tests {
         ConcurrentModificationException thrown =
                 Assertions.assertThrows(ConcurrentModificationException.class, () -> {
             a.addChild("H");
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 it.next();
             }
         });
