@@ -85,7 +85,7 @@ public class Tree<T> implements Iterable<T> {
             return false;
         }
         for (int i = 0; i < this.children.size(); i++) {
-            if (!this.children.get(i).equals(((Tree<?>) obj).children.get(i))){
+            if (!this.children.get(i).equals(((Tree<?>) obj).children.get(i))) {
                 return false;
             }
         }

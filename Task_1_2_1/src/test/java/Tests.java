@@ -154,16 +154,16 @@ public class Tests {
         Iterator<String> it = tree1.iterator();
         ConcurrentModificationException thrown =
                 Assertions.assertThrows(ConcurrentModificationException.class, () -> {
-            a.remove();
-            while (it.hasNext()) {
-                it.next();
-            }
-        });
+                    a.remove();
+                    while (it.hasNext()) {
+                        it.next();
+                    }
+                });
 
         ConcurrentModificationException thrown2 =
                 Assertions.assertThrows(ConcurrentModificationException.class, () -> {
-            it.remove();
-        });
+                    it.remove();
+                });
     }
 
     @Test
@@ -179,15 +179,15 @@ public class Tests {
         Iterator<String> it = tree1.dfsiterator();
         ConcurrentModificationException thrown =
                 Assertions.assertThrows(ConcurrentModificationException.class, () -> {
-            a.addChild("H");
-            while (it.hasNext()) {
-                it.next();
-            }
-        });
+                    a.addChild("H");
+                    while (it.hasNext()) {
+                        it.next();
+                    }
+                });
 
         ConcurrentModificationException thrown2 =
                 Assertions.assertThrows(ConcurrentModificationException.class, () -> {
-            it.remove();
-        });
+                    it.remove();
+                });
     }
 }
