@@ -4,7 +4,9 @@ import java.util.Map;
 
 /**
  * Class for storing a graph as an adjacency list.
- * The structure of the adjacency list: HashMap<NameOfVertex, HashMap<nameOfAdjacentVertex, WeightOfEdge>>.
+ * The structure of the adjacency list: HashMap(NameOfVertex,
+ * HashMap(nameOfAdjacentVertex, WeightOfEdge)).
+ *
  * @param <T> type of names of vertices and edges in the graph
  */
 
@@ -26,6 +28,7 @@ public class GraphAdjacencyList<T> {
 
     /**
      * Return the vertex object by name.
+     *
      * @param name name of vertex
      * @return vertex
      */
@@ -39,6 +42,7 @@ public class GraphAdjacencyList<T> {
 
     /**
      * Return the edge object by name.
+     *
      * @param name name of edge
      * @return edge
      */
@@ -52,13 +56,13 @@ public class GraphAdjacencyList<T> {
 
     /**
      * Adding a new vertex to the graph.
+     *
      * @param name name of new vertex
      */
     public void addVertex(T name) throws IllegalArgumentException {
         if (vertices.get(name) != null) {
             throw new IllegalArgumentException("This vertex already exists");
-        }
-        else {
+        } else {
             Vertex<T> v = new Vertex<>(name);
             vertices.put(name, v);
             this.adjVertices.put(name, new HashMap<>());
@@ -67,6 +71,7 @@ public class GraphAdjacencyList<T> {
 
     /**
      * Adding a new edge to the graph.
+     *
      * @param from the vertex for which the edge is outgoing
      * @param to the vertex for which the edge is ingoing
      * @param weight the weight of edge
@@ -75,8 +80,7 @@ public class GraphAdjacencyList<T> {
     public void addEdge(T from, T to, int weight, T name) throws IllegalArgumentException {
         if (edges.get(name) != null) {
             throw new IllegalArgumentException("This edge already exists");
-        }
-        else {
+        } else {
             Vertex<T> vertexFrom = vertices.get(from);
             if (vertexFrom == null) {
                 throw new IllegalArgumentException("Vertex 'from' does not exist");
@@ -93,6 +97,7 @@ public class GraphAdjacencyList<T> {
 
     /**
      * Removing a vertex and all its incident edges from the graph.
+     *
      * @param name the name of vertex
      */
     public void removeVertex(T name) throws IllegalArgumentException {
@@ -122,14 +127,14 @@ public class GraphAdjacencyList<T> {
             for (int i = 0; i < edgesToRemove.size(); i++) {
                 edges.remove(edgesToRemove.get(i));
             }
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("A vertex with this name does not exist");
         }
     }
 
     /**
      * Removing an edge from the graph.
+     *
      * @param name the name of edge
      */
     public void removeEdge(T name) throws IllegalArgumentException {
@@ -142,18 +147,19 @@ public class GraphAdjacencyList<T> {
                 tmp.remove(to.getName());
             }
             this.edges.remove(name);
-        }
-        else {
-            throw new IllegalArgumentException("An edge with this vertices and weight does not exist");
+        } else {
+            throw new IllegalArgumentException("An edge with this vertices " +
+                    "and weight does not exist");
         }
     }
 
     /**
      * Dijkstra's algorithm for sorting vertices by distance from a given vertex.
+     *
      * @param vertexName the name of given vertex
      * @return sorted by distance from a given vertex array
      */
-    public ArrayList<DistanceFromCurrVertex<T>> DijkstraAlgorithm(T vertexName) {
+    public ArrayList<DistanceFromCurrVertex<T>> dijkstraAlgorithm(T vertexName) {
         this.distances = new HashMap<>();
         this.visitedVertices = new HashMap<>();
         ArrayList<DistanceFromCurrVertex<T>> res = new ArrayList<>();
@@ -170,7 +176,8 @@ public class GraphAdjacencyList<T> {
             minDist = 1000000000;
             for (Map.Entry<T, Vertex<T>> entry : this.vertices.entrySet()) {
                 T currentVert = entry.getKey();
-                if ((!this.visitedVertices.get(currentVert)) && (this.distances.get(currentVert) < minDist)) {
+                if ((!this.visitedVertices.get(currentVert))
+                        && (this.distances.get(currentVert) < minDist)) {
                     minDist = this.distances.get(currentVert);
                     vertWithMinDist = currentVert;
                 }
@@ -185,7 +192,8 @@ public class GraphAdjacencyList<T> {
                     }
                 }
                 this.visitedVertices.put(vertWithMinDist, true);
-                res.add(new DistanceFromCurrVertex<>(vertWithMinDist, this.distances.get(vertWithMinDist)));
+                res.add(new DistanceFromCurrVertex<>(vertWithMinDist,
+                        this.distances.get(vertWithMinDist)));
             }
         }
         if (res.size() != this.vertices.size()) {

@@ -4,11 +4,12 @@ import java.util.Map;
 
 /**
  * Class for storing a graph as an incidence matrix.
- * The structure of the incidence matrix: HashMap<NameOfEdge, HashMap<nameOfIncidentVertex,
- * connectionOfEdgeAndVertex>>, where connectionOfEdgeAndVertex:
+ * The structure of the incidence matrix: HashMap(NameOfEdge, HashMap(nameOfIncidentVertex,
+ * connectionOfEdgeAndVertex)), where connectionOfEdgeAndVertex:
  * 1 - if the edge is outgoing to the incident vertex,
  * -1 - if the edge is incoming to the incident vertex,
  * 0 - if they are not incident.
+ *
  * @param <T> type of names of vertices and edges in the graph
  */
 public class GraphIncidenceMatrix<T> {
@@ -29,6 +30,7 @@ public class GraphIncidenceMatrix<T> {
 
     /**
      * Return the vertex object by name.
+     *
      * @param name name of vertex
      * @return vertex
      */
@@ -42,6 +44,7 @@ public class GraphIncidenceMatrix<T> {
 
     /**
      * Return the edge object by name.
+     *
      * @param name name of edge
      * @return edge
      */
@@ -55,13 +58,13 @@ public class GraphIncidenceMatrix<T> {
 
     /**
      * Adding a new vertex to the graph.
+     *
      * @param name name of new vertex
      */
     public void addVertex(T name) throws IllegalArgumentException {
         if (vertices.get(name) != null) {
             throw new IllegalArgumentException("This vertex already exists");
-        }
-        else {
+        } else {
             Vertex<T> v = new Vertex<>(name);
             vertices.put(name, v);
             if (!this.incMatrix.isEmpty()) {
@@ -75,6 +78,7 @@ public class GraphIncidenceMatrix<T> {
 
     /**
      * Adding a new edge to the graph.
+     *
      * @param from the vertex for which the edge is outgoing
      * @param to the vertex for which the edge is ingoing
      * @param weight the weight of edge
@@ -83,8 +87,7 @@ public class GraphIncidenceMatrix<T> {
     public void addEdge(T from, T to, int weight, T name) throws IllegalArgumentException {
         if (edges.get(name) != null) {
             throw new IllegalArgumentException("This edge already exists");
-        }
-        else {
+        } else {
             Vertex<T> vertexFrom = vertices.get(from);
             if (vertexFrom == null) {
                 throw new IllegalArgumentException("Vertex 'from' does not exist");
@@ -100,11 +103,9 @@ public class GraphIncidenceMatrix<T> {
                 T currVertex = entry.getKey();
                 if (currVertex.equals(from)) {
                     tmp.put(currVertex, 1);
-                }
-                else if (currVertex.equals(to)) {
+                } else if (currVertex.equals(to)) {
                     tmp.put(currVertex, -1);
-                }
-                else {
+                } else {
                     tmp.put(currVertex, 0);
                 }
             }
@@ -114,6 +115,7 @@ public class GraphIncidenceMatrix<T> {
 
     /**
      * Removing a vertex and all its incident edges from the graph.
+     *
      * @param name the name of vertex
      */
     public void removeVertex(T name) throws IllegalArgumentException {
@@ -131,14 +133,14 @@ public class GraphIncidenceMatrix<T> {
                 this.edges.remove(edgesToRemove.get(i));
             }
             this.vertices.remove(name);
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("A vertex with this name does not exist");
         }
     }
 
     /**
      * Removing an edge from the graph.
+     *
      * @param name the name of edge
      */
     public void removeEdge(T name) throws IllegalArgumentException {
@@ -146,18 +148,19 @@ public class GraphIncidenceMatrix<T> {
         if (e != null) {
             this.incMatrix.remove(name);
             this.edges.remove(name);
-        }
-        else {
-            throw new IllegalArgumentException("An edge with this vertices and weight does not exist");
+        } else {
+            throw new IllegalArgumentException("An edge with this vertices " +
+                    "and weight does not exist");
         }
     }
 
     /**
      * Dijkstra's algorithm for sorting vertices by distance from a given vertex.
+     *
      * @param vertexName the name of given vertex
      * @return sorted by distance from a given vertex array
      */
-    public ArrayList<DistanceFromCurrVertex<T>> DijkstraAlgorithm(T vertexName) {
+    public ArrayList<DistanceFromCurrVertex<T>> dijkstraAlgorithm(T vertexName) {
         this.distances = new HashMap<>();
         this.visitedVertices = new HashMap<>();
         ArrayList<DistanceFromCurrVertex<T>> res = new ArrayList<>();
@@ -174,13 +177,15 @@ public class GraphIncidenceMatrix<T> {
             minDist = 1000000000;
             for (Map.Entry<T, Vertex<T>> entry : this.vertices.entrySet()) {
                 T currentVert = entry.getKey();
-                if ((!this.visitedVertices.get(currentVert)) && (this.distances.get(currentVert) < minDist)) {
+                if ((!this.visitedVertices.get(currentVert)) &&
+                        (this.distances.get(currentVert) < minDist)) {
                     minDist = this.distances.get(currentVert);
                     vertWithMinDist = currentVert;
                 }
             }
             if (vertWithMinDist != null) {
-                T edgeName, vertTo;
+                T edgeName;
+                T vertTo;
                 HashMap<T, Integer> tmp;
                 int weight;
                 for (Map.Entry<T, HashMap<T, Integer>> entry : this.incMatrix.entrySet()) {
@@ -200,7 +205,8 @@ public class GraphIncidenceMatrix<T> {
                     }
                 }
                 this.visitedVertices.put(vertWithMinDist, true);
-                res.add(new DistanceFromCurrVertex<>(vertWithMinDist, this.distances.get(vertWithMinDist)));
+                res.add(new DistanceFromCurrVertex<>(vertWithMinDist,
+                        this.distances.get(vertWithMinDist)));
             }
         }
         if (res.size() != this.vertices.size()) {

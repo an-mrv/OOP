@@ -1,5 +1,6 @@
 /**
  * Class for working with vertex objects. The vertex name is set by the user.
+ *
  * @param <T> type of names of vertices in the graph
  */
 public class Vertex<T> {
@@ -7,6 +8,7 @@ public class Vertex<T> {
 
     /**
      * Constructor.
+     *
      * @param value the name of vertex
      */
     Vertex(T value) {
@@ -14,6 +16,8 @@ public class Vertex<T> {
     }
 
     /**
+     * Get the name of vertex
+     *
      * @return the name of vertex
      */
     public T getName() {

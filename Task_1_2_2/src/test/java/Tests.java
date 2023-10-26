@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
@@ -9,9 +10,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class Tests {
     @Test
-    public void Test1() {
+    public void TestGraphAdjacencyMatrix() {
         GraphInitialization initialization = new GraphInitialization();
-        GraphAdjacencyMatrix<String> g = initialization.byAdjMatrix("src/main/java/graphbyAdjMatrix.txt");
+        GraphAdjacencyMatrix<String> g =
+                initialization.byAdjMatrix("src/main/java/graphbyAdjMatrix.txt");
         ArrayList<DistanceFromCurrVertex<String>> res;
         res = g.DijkstraAlgorithm("C");
         ArrayList<DistanceFromCurrVertex<String>> answ = new ArrayList<>();
@@ -54,10 +56,10 @@ public class Tests {
         }
 
         Vertex<String> v = g.getVertexByName("A");
-        assert(v.getName().equals("A"));
+        assert (v.getName().equals("A"));
 
         Edge<String> e = g.getEdgeByName("e1");
-        assert(e.getName().equals("e1"));
+        assert (e.getName().equals("e1"));
 
         IllegalArgumentException thrown =
                 Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -94,9 +96,10 @@ public class Tests {
     }
 
     @Test
-    public void Test2() {
+    public void TestGraphAdjacencyList() {
         GraphInitialization initialization = new GraphInitialization();
-        GraphAdjacencyList<String> g = initialization.byAdjList("src/main/java/graphbyAdjList.txt");
+        GraphAdjacencyList<String> g =
+                initialization.byAdjList("src/main/java/graphbyAdjList.txt");
         ArrayList<DistanceFromCurrVertex<String>> res;
         res = g.DijkstraAlgorithm("C");
         ArrayList<DistanceFromCurrVertex<String>> answ = new ArrayList<>();
@@ -132,10 +135,10 @@ public class Tests {
         g.addEdge("A", "I", 1, "e1");
 
         Vertex<String> v = g.getVertexByName("A");
-        assert(v.getName().equals("A"));
+        assert (v.getName().equals("A"));
 
         Edge<String> e = g.getEdgeByName("e1");
-        assert(e.getName().equals("e1"));
+        assert (e.getName().equals("e1"));
 
         IllegalArgumentException thrown =
                 Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -165,9 +168,10 @@ public class Tests {
     }
 
     @Test
-    public void Test3() {
+    public void TestGraphIncidenceMatrix() {
         GraphInitialization initialization = new GraphInitialization();
-        GraphIncidenceMatrix<String> g = initialization.byIncMatrix("src/main/java/graphbyIncMatrix.txt");
+        GraphIncidenceMatrix<String> g =
+                initialization.byIncMatrix("src/main/java/graphbyIncMatrix.txt");
         ArrayList<DistanceFromCurrVertex<String>> res;
         res = g.DijkstraAlgorithm("C");
         ArrayList<DistanceFromCurrVertex<String>> answ = new ArrayList<>();

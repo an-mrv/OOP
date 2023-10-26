@@ -1,5 +1,6 @@
 /**
  * Class for working with edge objects. The edge name is set by the user.
+ *
  * @param <T> type of names of edges in the graph
  */
 public class Edge<T> {
@@ -10,6 +11,7 @@ public class Edge<T> {
 
     /**
      * Constructor.
+     *
      * @param from the vertex for which the edge is outgoing
      * @param to the vertex for which the edge is ingoing
      * @param weight the weight of edge
@@ -23,6 +25,8 @@ public class Edge<T> {
     }
 
     /**
+     * Get the weight of edge.
+     *
      * @return the weight of edge
      */
     public int getWeight() {
@@ -30,6 +34,8 @@ public class Edge<T> {
     }
 
     /**
+     * Get the vertex for which the edge is outgoing.
+     *
      * @return the vertex for which the edge is outgoing
      */
     public Vertex<T> getFrom() {
@@ -37,6 +43,8 @@ public class Edge<T> {
     }
 
     /**
+     * Get the vertex for which the edge is ingoing.
+     *
      * @return the vertex for which the edge is ingoing
      */
     public Vertex<T> getTo() {
@@ -44,6 +52,8 @@ public class Edge<T> {
     }
 
     /**
+     * Get the name of edge.
+     *
      * @return the name of edge
      */
     public T getName() {

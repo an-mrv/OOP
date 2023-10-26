@@ -8,6 +8,7 @@ public class DistanceFromCurrVertex<T> {
 
     /**
      * Constructor.
+     *
      * @param vertexName the name of vertex
      * @param distance the distance from the specified vertex to the current one
      */
