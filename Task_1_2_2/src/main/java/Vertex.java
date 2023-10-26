@@ -16,7 +16,7 @@ public class Vertex<T> {
     }
 
     /**
-     * Get the name of vertex
+     * Get the name of vertex.
      *
      * @return the name of vertex
      */

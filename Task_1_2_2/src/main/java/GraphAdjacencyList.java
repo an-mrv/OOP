@@ -148,8 +148,8 @@ public class GraphAdjacencyList<T> {
             }
             this.edges.remove(name);
         } else {
-            throw new IllegalArgumentException("An edge with this vertices " +
-                    "and weight does not exist");
+            throw new IllegalArgumentException("An edge with this vertices "
+                    + "and weight does not exist");
         }
     }
 

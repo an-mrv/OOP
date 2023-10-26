@@ -126,7 +126,8 @@ public class GraphInitialization {
      * Representation of a graph in a file and its further storage in a file in the form of
      * an incidence matrix. The first number in the file is the number of vertices, the second
      * number is the number of edges. In the incidence matrix, each row corresponds to one edge
-     * of the graph. The first parameter of the string is the name of the edge, the last is its weight.
+     * of the graph. The first parameter of the string is the name of the edge, the last
+     * is its weight.
      * 1 - if the edge is outgoing to the corresponding vertex,
      * -1 - if the edge is incoming to the corresponding vertex,
      * 0 - if they are not incident.

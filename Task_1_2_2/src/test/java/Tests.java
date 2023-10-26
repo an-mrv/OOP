@@ -1,5 +1,5 @@
-import org.junit.jupiter.api.Assertions;
 import java.util.ArrayList;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class Tests {
     @Test
-    public void TestGraphAdjacencyMatrix() {
+    public void testGraphAdjacencyMatrix() {
         GraphInitialization initialization = new GraphInitialization();
         GraphAdjacencyMatrix<String> g =
                 initialization.byAdjMatrix("src/main/java/graphbyAdjMatrix.txt");
         ArrayList<DistanceFromCurrVertex<String>> res;
-        res = g.DijkstraAlgorithm("C");
+        res = g.dijkstraAlgorithm("C");
         ArrayList<DistanceFromCurrVertex<String>> answ = new ArrayList<>();
         answ.add(new DistanceFromCurrVertex<>("C", 0));
         answ.add(new DistanceFromCurrVertex<>("D", 2));
@@ -32,7 +32,7 @@ public class Tests {
 
         g.addVertex("H"); //an unreachable vertex
         answ.add(new DistanceFromCurrVertex<>("H", 1000000000));
-        res = g.DijkstraAlgorithm("C");
+        res = g.dijkstraAlgorithm("C");
         for (int i = 0; i < res.size(); i++) {
             if (!answ.get(i).equals(res.get(i))) {
                 fail();
@@ -45,7 +45,7 @@ public class Tests {
         g.addEdge("I", "G", 2, "e23");
         g.addEdge("G", "I", 2, "e24");
 
-        res = g.DijkstraAlgorithm("C");
+        res = g.dijkstraAlgorithm("C");
         answ.remove(6);
         answ.add(6, new DistanceFromCurrVertex<>("I", 11));
         answ.add(7, new DistanceFromCurrVertex<>("A", 12));
@@ -96,12 +96,12 @@ public class Tests {
     }
 
     @Test
-    public void TestGraphAdjacencyList() {
+    public void testGraphAdjacencyList() {
         GraphInitialization initialization = new GraphInitialization();
         GraphAdjacencyList<String> g =
                 initialization.byAdjList("src/main/java/graphbyAdjList.txt");
         ArrayList<DistanceFromCurrVertex<String>> res;
-        res = g.DijkstraAlgorithm("C");
+        res = g.dijkstraAlgorithm("C");
         ArrayList<DistanceFromCurrVertex<String>> answ = new ArrayList<>();
         answ.add(new DistanceFromCurrVertex<>("C", 0));
         answ.add(new DistanceFromCurrVertex<>("D", 2));
@@ -124,7 +124,7 @@ public class Tests {
         g.removeEdge("e20");
         answ.remove(3);
         answ.add(new DistanceFromCurrVertex<>("F", 1000000000));
-        res = g.DijkstraAlgorithm("C");
+        res = g.dijkstraAlgorithm("C");
         for (int i = 0; i < res.size(); i++) {
             if (!answ.get(i).equals(res.get(i))) {
                 fail();
@@ -168,12 +168,12 @@ public class Tests {
     }
 
     @Test
-    public void TestGraphIncidenceMatrix() {
+    public void testGraphIncidenceMatrix() {
         GraphInitialization initialization = new GraphInitialization();
         GraphIncidenceMatrix<String> g =
                 initialization.byIncMatrix("src/main/java/graphbyIncMatrix.txt");
         ArrayList<DistanceFromCurrVertex<String>> res;
-        res = g.DijkstraAlgorithm("C");
+        res = g.dijkstraAlgorithm("C");
         ArrayList<DistanceFromCurrVertex<String>> answ = new ArrayList<>();
         answ.add(new DistanceFromCurrVertex<>("C", 0));
         answ.add(new DistanceFromCurrVertex<>("D", 2));
@@ -196,7 +196,7 @@ public class Tests {
         answ1.add(new DistanceFromCurrVertex<>("D", 11));
         answ1.add(new DistanceFromCurrVertex<>("B", 19));
         answ1.add(new DistanceFromCurrVertex<>("A", 23));
-        res = g.DijkstraAlgorithm("G");
+        res = g.dijkstraAlgorithm("G");
         for (int i = 0; i < res.size(); i++) {
             if (!answ1.get(i).equals(res.get(i))) {
                 fail();
@@ -214,7 +214,7 @@ public class Tests {
         answ2.add(new DistanceFromCurrVertex<>("F", 1000000000));
         answ2.add(new DistanceFromCurrVertex<>("G", 1000000000));
 
-        res = g.DijkstraAlgorithm("I");
+        res = g.dijkstraAlgorithm("I");
         for (int i = 0; i < res.size(); i++) {
             if (!answ2.get(i).equals(res.get(i))) {
                 fail();
@@ -222,10 +222,10 @@ public class Tests {
         }
 
         Vertex<String> v = g.getVertexByName("A");
-        assert(v.getName().equals("A"));
+        assert (v.getName().equals("A"));
 
         Edge<String> e = g.getEdgeByName("e1");
-        assert(e.getName().equals("e1"));
+        assert (e.getName().equals("e1"));
 
         IllegalArgumentException thrown =
                 Assertions.assertThrows(IllegalArgumentException.class, () -> {

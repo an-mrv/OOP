@@ -1,5 +1,6 @@
 /**
  * A class to return the result of Dijkstra's algorithm.
+ *
  * @param <T> type of names of vertices and edges in the graph
  */
 public class DistanceFromCurrVertex<T> {

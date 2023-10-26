@@ -149,8 +149,8 @@ public class GraphIncidenceMatrix<T> {
             this.incMatrix.remove(name);
             this.edges.remove(name);
         } else {
-            throw new IllegalArgumentException("An edge with this vertices " +
-                    "and weight does not exist");
+            throw new IllegalArgumentException("An edge with this vertices "
+                    + "and weight does not exist");
         }
     }
 
@@ -177,8 +177,8 @@ public class GraphIncidenceMatrix<T> {
             minDist = 1000000000;
             for (Map.Entry<T, Vertex<T>> entry : this.vertices.entrySet()) {
                 T currentVert = entry.getKey();
-                if ((!this.visitedVertices.get(currentVert)) &&
-                        (this.distances.get(currentVert) < minDist)) {
+                if ((!this.visitedVertices.get(currentVert))
+                        && (this.distances.get(currentVert) < minDist)) {
                     minDist = this.distances.get(currentVert);
                     vertWithMinDist = currentVert;
                 }

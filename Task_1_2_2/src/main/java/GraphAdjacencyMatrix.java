@@ -150,10 +150,9 @@ public class GraphAdjacencyMatrix<T> {
             HashMap<T, Integer> tmp = this.adjMatrix.get(from.getName());
             tmp.put(to.getName(), 0);
             this.edges.remove(name);
-        }
-        else {
-            throw new IllegalArgumentException("An edge with this vertices " +
-                    "and weight does not exist");
+        } else {
+            throw new IllegalArgumentException("An edge with this vertices "
+                    + "and weight does not exist");
         }
     }
 
@@ -180,8 +179,8 @@ public class GraphAdjacencyMatrix<T> {
             minDist = 1000000000;
             for (Map.Entry<T, Vertex<T>> entry : this.vertices.entrySet()) {
                 T currentVert = entry.getKey();
-                if ((!this.visitedVertices.get(currentVert)) &&
-                        (this.distances.get(currentVert) < minDist)) {
+                if ((!this.visitedVertices.get(currentVert))
+                        && (this.distances.get(currentVert) < minDist)) {
                     minDist = this.distances.get(currentVert);
                     vertWithMinDist = currentVert;
                 }
