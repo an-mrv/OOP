@@ -1,0 +1,29 @@
+7
+A B C D E F G
+A 3
+B 5 e1
+D 12 e2
+G 25 e3
+B 2
+A 5 e4
+D 8 e5
+C 4
+D 2 e6
+E 4 e7
+G 10 e8
+F 5 e9
+D 3
+A 12 e10
+B 8 e11
+C 2 e12
+E 2
+C 4 e13
+G 5 e14
+F 2
+C 5 e15
+G 10 e16
+G 4
+A 25 e17
+C 10 e18
+E 5 e19
+F 10 e20
