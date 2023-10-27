@@ -10,7 +10,7 @@ import java.util.Map;
  * @param <T> type of names of vertices and edges in the graph
  */
 
-public class GraphAdjacencyList<T> {
+public class GraphAdjacencyList<T> implements GraphInterface<T> {
     private HashMap<T, HashMap<T, Integer>> adjVertices;
     private HashMap<T, Vertex<T>> vertices;
     private HashMap<T, Edge<T>> edges;

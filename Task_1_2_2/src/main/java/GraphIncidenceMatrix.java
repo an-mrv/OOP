@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * @param <T> type of names of vertices and edges in the graph
  */
-public class GraphIncidenceMatrix<T> {
+public class GraphIncidenceMatrix<T> implements GraphInterface<T> {
     private HashMap<T, HashMap<T, Integer>> incMatrix;
     private HashMap<T, Vertex<T>> vertices;
     private HashMap<T, Edge<T>> edges;
