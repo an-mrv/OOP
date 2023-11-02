@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,23 +18,23 @@ public class Tests {
     public void testInput1() {
         SubstringFinder s = new SubstringFinder();
         ArrayList<Integer> res = s.find("src/test/java/input1.txt", "бра");
-        ArrayList<Integer> answ1 = new ArrayList<>(Arrays.asList(1, 8));
-        assertEquals(res, answ1);
+        ArrayList<Integer> answ1 = new ArrayList<>(List.of(1, 8));
+        assertEquals(answ1, res);
 
         res = s.find("src/test/java/input1.txt", "аб");
-        ArrayList<Integer> answ2 = new ArrayList<>(Arrays.asList(0, 7));
-        assertEquals(res, answ2);
+        ArrayList<Integer> answ2 = new ArrayList<>(List.of(0, 7));
+        assertEquals(answ2, res);
 
         res = s.find("src/test/java/input1.txt", "а");
-        ArrayList<Integer> answ3 = new ArrayList<>(Arrays.asList(0, 3, 5, 7, 10));
-        assertEquals(res, answ3);
+        ArrayList<Integer> answ3 = new ArrayList<>(List.of(0, 3, 5, 7, 10));
+        assertEquals(answ3, res);
 
         res = s.find("src/test/java/input1.txt", "");
         ArrayList<Integer> answ4 = new ArrayList<>();
-        assertEquals(res, answ4);
+        assertEquals(answ4, res);
 
         res = s.find("src/test/java/input1.txt", "абрр");
-        assertEquals(res, answ4);
+        assertEquals(answ4, res);
     }
 
     /**
@@ -54,8 +54,8 @@ public class Tests {
         }
         SubstringFinder s = new SubstringFinder();
         ArrayList<Integer> res = s.find("src/test/java/input2.txt", "ab");
-        ArrayList<Integer> answ = new ArrayList<>(Arrays.asList(511, 516));
-        assertEquals(res, answ);
+        ArrayList<Integer> answ = new ArrayList<>(List.of(511, 516));
+        assertEquals(answ, res);
     }
 
     /**
@@ -66,7 +66,7 @@ public class Tests {
         SubstringFinder s = new SubstringFinder();
         ArrayList<Integer> res = s.find("src/test/java/input3.txt", "a");
         ArrayList<Integer> answ = new ArrayList<>();
-        assertEquals(res, answ);
+        assertEquals(answ, res);
     }
 
     /**
@@ -80,5 +80,4 @@ public class Tests {
                     ArrayList<Integer> res = s.find("src/test/java/input4.txt", "a");
                 });
     }
-
 }
