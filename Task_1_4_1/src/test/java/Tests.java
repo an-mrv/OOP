@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * Tests.
  */
@@ -27,9 +29,9 @@ public class Tests {
         rb.putGrade(2, "императивное программирование", "хорошо");
 
         String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assert (currentAverageScore.equals("4,7"));
-        assert (rb.givePossibilityGetRedDiploma());
-        assert (!rb.givePossibilityGetIncreasedScholarship(2));
+        assertEquals(currentAverageScore, "4,7");
+        assertTrue(rb.givePossibilityGetRedDiploma());
+        assertFalse(rb.givePossibilityGetIncreasedScholarship(2));
     }
 
     @Test
@@ -43,28 +45,28 @@ public class Tests {
         rb.putGrade(1, "императивное программирование", "хорошо");
         rb.putGrade(1, "основы культуры речи", "отлично");
         String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assert (currentAverageScore.equals("4,2"));
-        assert (!rb.givePossibilityGetRedDiploma());
-        assert (!rb.givePossibilityGetIncreasedScholarship(1));
+        assertEquals(currentAverageScore, "4,2");
+        assertFalse(rb.givePossibilityGetRedDiploma());
+        assertFalse(rb.givePossibilityGetIncreasedScholarship(1));
 
         rb.putGrade(1, "введение в алгебру и анализ", "отлично");
         currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assert (currentAverageScore.equals("4,5"));
-        assert (!rb.givePossibilityGetRedDiploma());
-        assert (!rb.givePossibilityGetIncreasedScholarship(1));
+        assertEquals(currentAverageScore, "4,5");
+        assertFalse(rb.givePossibilityGetRedDiploma());
+        assertFalse(rb.givePossibilityGetIncreasedScholarship(1));
 
         rb.putGrade(1, "введение в дискретную математику и математическую логику",
                 "отлично");
         rb.putGrade(1, "декларативное программирование", "отлично");
         rb.putGrade(1, "императивное программирование", "отлично");
         currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assert (currentAverageScore.equals("5,0"));
-        assert (rb.givePossibilityGetRedDiploma());
-        assert (rb.givePossibilityGetIncreasedScholarship(1));
+        assertEquals(currentAverageScore, "5,0");
+        assertTrue(rb.givePossibilityGetRedDiploma());
+        assertTrue(rb.givePossibilityGetIncreasedScholarship(1));
 
         rb.putGrade(8, "выполнение и защита выпускной квалификационной работы",
                 "хорошо");
-        assert (!rb.givePossibilityGetRedDiploma());
+        assertFalse(rb.givePossibilityGetRedDiploma());
     }
 
     @Test
@@ -113,22 +115,22 @@ public class Tests {
         rb.putGrade(8, "производственная практика", "отлично");
 
         String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assert (currentAverageScore.equals("4,8"));
-        assert (rb.givePossibilityGetRedDiploma());
-        assert (rb.givePossibilityGetIncreasedScholarship(2));
+        assertEquals(currentAverageScore, "4,8");
+        assertTrue(rb.givePossibilityGetRedDiploma());
+        assertTrue(rb.givePossibilityGetIncreasedScholarship(2));
 
         rb.putGrade(8, "выполнение и защита выпускной квалификационной работы",
                 "хорошо");
-        assert (!rb.givePossibilityGetRedDiploma());
+        assertFalse(rb.givePossibilityGetRedDiploma());
 
         rb.putGrade(6, "допустимые множества и вычислимость", "удовлетворительно");
         rb.putGrade(4, "введение в аналоговую электронику и технику измерений",
                 "удовлетворительно");
         rb.putGrade(7, "распределенные алгоритмы", "хорошо");
         currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assert (currentAverageScore.equals("4,6"));
-        assert (!rb.givePossibilityGetRedDiploma());
-        assert (!rb.givePossibilityGetIncreasedScholarship(7));
+        assertEquals(currentAverageScore, "4,6");
+        assertFalse(rb.givePossibilityGetRedDiploma());
+        assertFalse(rb.givePossibilityGetIncreasedScholarship(7));
     }
 
     @Test
