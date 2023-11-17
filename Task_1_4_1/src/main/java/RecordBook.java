@@ -34,11 +34,11 @@ public class RecordBook {
      * @return Grade as number
      */
     private int convertGrade(String grade) {
-        if (grade.equals("удовлетворительно")) {
+        if (grade.compareTo("удовлетворительно") == 0) {
             return 3;
-        } else if (grade.equals("хорошо")) {
+        } else if (grade.compareTo("хорошо") == 0) {
             return 4;
-        } else if (grade.equals("отлично")) {
+        } else if (grade.compareTo("отлично") == 0) {
             return 5;
         } else {
             return 0;

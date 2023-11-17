@@ -29,9 +29,9 @@ public class Tests {
         rb.putGrade(2, "императивное программирование", "хорошо");
 
         String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
+        assertFalse(rb.givePossibilityGetIncreasedScholarship(2));
         assertEquals(currentAverageScore, "4,7");
         assertTrue(rb.givePossibilityGetRedDiploma());
-        assertFalse(rb.givePossibilityGetIncreasedScholarship(2));
     }
 
     @Test
