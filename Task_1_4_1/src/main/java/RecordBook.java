@@ -34,15 +34,14 @@ public class RecordBook {
      * @return Grade as number
      */
     private int convertGrade(String grade) {
-        switch (grade) {
-            case "удовлетворительно":
-                return 3;
-            case "хорошо":
-                return 4;
-            case "отлично":
-                return 5;
-            default:
-                return 0;
+        if (grade.equals(new String("удовлетворительно".getBytes(), StandardCharsets.UTF_8))) {
+            return 3;
+        } else if (grade.equals(new String("хорошо".getBytes(), StandardCharsets.UTF_8))) {
+            return 4;
+        } else if (grade.equals(new String("отлично".getBytes(), StandardCharsets.UTF_8))) {
+            return 5;
+        } else {
+            return 0;
         }
     }
 
@@ -55,7 +54,8 @@ public class RecordBook {
      * @param mark mark for this subject (valid: "удовлетворительно", "хорошо", "отлично")
      */
     public void putGrade(int semester, String subj, String mark) throws IllegalArgumentException {
-        int grade = convertGrade(mark);
+        String mark2 = new String(mark.getBytes(), StandardCharsets.UTF_8);
+        int grade = convertGrade(mark2);
         String subject = new String(subj.getBytes(), StandardCharsets.UTF_8);
         if (grade == 0) {
             throw new IllegalArgumentException("Invalid mark");
