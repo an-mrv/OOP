@@ -22,28 +22,34 @@ public class RecordBook {
         this.amountOfThrees = 0;
         this.grades = new HashMap<>();
         for (int i = 0; i < 8; i++) {
-            this.grades.put(i+1, new HashMap<>());
+            this.grades.put(i + 1, new HashMap<>());
         }
         this.finalGrades = new HashMap<>();
     }
 
     /**
      * Converting a grade from a string to a number.
+     *
      * @param grade Grade as string
      * @return Grade as number
      */
     private int convertGrade(String grade) {
-        return switch (grade) {
-            case "удовлетворительно" -> 3;
-            case "хорошо" -> 4;
-            case "отлично" -> 5;
-            default -> 0;
-        };
+        switch (grade) {
+            case "удовлетворительно":
+                return 3;
+            case "хорошо":
+                return 4;
+            case "отлично":
+                return 5;
+            default:
+                return 0;
+        }
     }
 
     /**
      * Function for putting the grade into the record book.
      * If the grade for a particular subject in the semester has already been set, then it can be changed.
+     *
      * @param semester semester number
      * @param subj name of the subject
      * @param mark mark for this subject (valid: "удовлетворительно", "хорошо", "отлично")
@@ -91,6 +97,7 @@ public class RecordBook {
 
     /**
      * Function that returns the current average score for the all studying time.
+     *
      * @return current average score
      */
     public Double giveCurrentAverageScore() {
@@ -100,6 +107,7 @@ public class RecordBook {
     /**
      * Function that returns the possibility of getting an increased scholarship in the specified
      * semester. An increased scholarship is given if all grades in the current semester are 5.
+     *
      * @param semester current semester
      * @return true - if the increased scholarship is given; false - if the increased scholarship
      * is not given
@@ -116,6 +124,7 @@ public class RecordBook {
 
     /**
      * Function that returns the possibility of receiving a red diploma at the moment.
+     *
      * @return true - if at the moment there is a possibility; false - if there is no
      * probability at the moment
      */
