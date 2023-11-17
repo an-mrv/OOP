@@ -50,12 +50,11 @@ public class RecordBook {
      * If the grade for a particular subject in the semester has already been set, then it can be changed.
      *
      * @param semester semester number
-     * @param subj name of the subject
+     * @param subject name of the subject
      * @param mark mark for this subject (valid: "удовлетворительно", "хорошо", "отлично")
      */
-    public void putGrade(int semester, String subj, String mark) throws IllegalArgumentException {
+    public void putGrade(int semester, String subject, String mark) throws IllegalArgumentException {
         int grade = convertGrade(mark);
-        String subject = new String(subj.getBytes(), StandardCharsets.UTF_8);
         if (grade == 0) {
             throw new IllegalArgumentException("Invalid mark");
         }
@@ -139,10 +138,8 @@ public class RecordBook {
             }
             double result = (double) amountOfFives / (double) amountOfAllFinalGrades;
             if (result >= 0.75) {
-                String subject = new String("выполнение и защита выпускной квалификационной работы".getBytes(),
-                        StandardCharsets.UTF_8);
-                if (this.grades.get(8).containsKey(subject)) {
-                    int mark = this.grades.get(8).get(subject);
+                if (this.grades.get(8).containsKey("выполнение и защита выпускной квалификационной работы")) {
+                    int mark = this.grades.get(8).get("выполнение и защита выпускной квалификационной работы");
                     if (mark == 5) {
                         return true;
                     }
