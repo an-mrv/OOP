@@ -1,4 +1,3 @@
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +6,7 @@ import java.util.Map;
  * Class that implements the work of the student's electronic record book.
  */
 public class RecordBook {
+    final int FINAL_SEMESTER = 8;
     private Integer amountOfAllGrades;
     private Integer sumOfAllGrades;
     private Integer amountOfThrees;
@@ -21,7 +21,7 @@ public class RecordBook {
         this.sumOfAllGrades = 0;
         this.amountOfThrees = 0;
         this.grades = new HashMap<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < FINAL_SEMESTER; i++) {
             this.grades.put(i + 1, new HashMap<>());
         }
         this.finalGrades = new HashMap<>();
@@ -34,15 +34,12 @@ public class RecordBook {
      * @return Grade as number
      */
     private int convertGrade(String grade) {
-        if (grade.compareTo("удовлетворительно") == 0) {
-            return 3;
-        } else if (grade.compareTo("хорошо") == 0) {
-            return 4;
-        } else if (grade.compareTo("отлично") == 0) {
-            return 5;
-        } else {
-            return 0;
-        }
+        return switch (grade) {
+            case "удовлетворительно" -> 3;
+            case "хорошо" -> 4;
+            case "отлично" -> 5;
+            default -> throw new IllegalArgumentException("Invalid mark");
+        };
     }
 
     /**
@@ -53,11 +50,8 @@ public class RecordBook {
      * @param subject name of the subject
      * @param mark mark for this subject (valid: "удовлетворительно", "хорошо", "отлично")
      */
-    public void putGrade(int semester, String subject, String mark) throws IllegalArgumentException {
+    public void putGrade(int semester, String subject, String mark) {
         int grade = convertGrade(mark);
-        if (grade == 0) {
-            throw new IllegalArgumentException("Invalid mark");
-        }
 
         HashMap<String, Integer> temp = this.grades.get(semester);
         if (temp.containsKey(subject)) { //changing an existing mark
@@ -112,12 +106,7 @@ public class RecordBook {
      */
     public Boolean givePossibilityGetIncreasedScholarship(int semester) {
         HashMap<String, Integer> temp = this.grades.get(semester);
-        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            if (entry.getValue() != 5) {
-                return false;
-            }
-        }
-        return true;
+        return temp.values().stream().allMatch(grade -> grade == 5);
     }
 
     /**
@@ -138,8 +127,9 @@ public class RecordBook {
             }
             double result = (double) amountOfFives / (double) amountOfAllFinalGrades;
             if (result >= 0.75) {
-                if (this.grades.get(8).containsKey("выполнение и защита выпускной квалификационной работы")) {
-                    int mark = this.grades.get(8).get("выполнение и защита выпускной квалификационной работы");
+                String subject = "выполнение и защита выпускной квалификационной работы";
+                if (this.grades.get(FINAL_SEMESTER).containsKey(subject)) {
+                    int mark = this.grades.get(FINAL_SEMESTER).get(subject);
                     if (mark == 5) {
                         return true;
                     }

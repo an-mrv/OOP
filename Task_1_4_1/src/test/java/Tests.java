@@ -28,10 +28,9 @@ public class Tests {
         rb.putGrade(2, "иностранный язык", "отлично");
         rb.putGrade(2, "императивное программирование", "хорошо");
 
-        String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
         assertFalse(rb.givePossibilityGetIncreasedScholarship(2));
-        assertEquals(currentAverageScore, "4,7");
         assertTrue(rb.givePossibilityGetRedDiploma());
+        assertEquals(Math.round(rb.giveCurrentAverageScore() * 10) / 10.0, 4.7);
     }
 
     @Test
@@ -44,14 +43,12 @@ public class Tests {
         rb.putGrade(1, "история", "отлично");
         rb.putGrade(1, "императивное программирование", "хорошо");
         rb.putGrade(1, "основы культуры речи", "отлично");
-        String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assertEquals(currentAverageScore, "4,2");
+        assertEquals(Math.round(rb.giveCurrentAverageScore() * 10) / 10.0, 4.2);
         assertFalse(rb.givePossibilityGetRedDiploma());
         assertFalse(rb.givePossibilityGetIncreasedScholarship(1));
 
         rb.putGrade(1, "введение в алгебру и анализ", "отлично");
-        currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assertEquals(currentAverageScore, "4,5");
+        assertEquals(Math.round(rb.giveCurrentAverageScore() * 10) / 10.0, 4.5);
         assertFalse(rb.givePossibilityGetRedDiploma());
         assertFalse(rb.givePossibilityGetIncreasedScholarship(1));
 
@@ -59,8 +56,7 @@ public class Tests {
                 "отлично");
         rb.putGrade(1, "декларативное программирование", "отлично");
         rb.putGrade(1, "императивное программирование", "отлично");
-        currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assertEquals(currentAverageScore, "5,0");
+        assertEquals(Math.round(rb.giveCurrentAverageScore() * 10) / 10.0, 5.0);
         assertTrue(rb.givePossibilityGetRedDiploma());
         assertTrue(rb.givePossibilityGetIncreasedScholarship(1));
 
@@ -114,8 +110,7 @@ public class Tests {
         rb.putGrade(8, "экономика", "хорошо");
         rb.putGrade(8, "производственная практика", "отлично");
 
-        String currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assertEquals(currentAverageScore, "4,8");
+        assertEquals(Math.round(rb.giveCurrentAverageScore() * 10) / 10.0, 4.8);
         assertTrue(rb.givePossibilityGetRedDiploma());
         assertTrue(rb.givePossibilityGetIncreasedScholarship(2));
 
@@ -127,8 +122,7 @@ public class Tests {
         rb.putGrade(4, "введение в аналоговую электронику и технику измерений",
                 "удовлетворительно");
         rb.putGrade(7, "распределенные алгоритмы", "хорошо");
-        currentAverageScore = String.format("%.1f", rb.giveCurrentAverageScore());
-        assertEquals(currentAverageScore, "4,6");
+        assertEquals(Math.round(rb.giveCurrentAverageScore() * 10) / 10.0, 4.6);
         assertFalse(rb.givePossibilityGetRedDiploma());
         assertFalse(rb.givePossibilityGetIncreasedScholarship(7));
     }
