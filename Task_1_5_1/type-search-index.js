@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Expression"},{"p":"<Unnamed>","l":"WrongArgumentException"},{"p":"<Unnamed>","l":"WrongPrefixNotationException"}]
