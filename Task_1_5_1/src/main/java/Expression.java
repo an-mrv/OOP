@@ -24,15 +24,15 @@ public class Expression {
      * @return the calculated real number
      * @throws WrongArgumentException an exception is made if one of the arguments of the
      * expression is written incorrectly
-     * @throws WrongPrefixNotationException an exception is made if there is an error in the prefix notation
+     * @throws WrongPrefixNotationException an exception is made if there is an error in the
+     * prefix notation
      */
     public double calculate() throws
             WrongArgumentException, WrongPrefixNotationException {
         for (int i = this.expr.length - 1; i >= 0; i--) {
             if (this.expr[i].matches("^[0-9]+[.]?[0-9]*$")) {
                 this.stack.push(Double.parseDouble(expr[i]));
-            }
-            else {
+            } else {
                 this.stack.push(operation(expr[i]));
             }
         }
@@ -47,10 +47,11 @@ public class Expression {
      *
      * @return an array of two real numbers
      */
-    private Double[] pop2Args() throws WrongPrefixNotationException{
+    private Double[] pop2Args() throws WrongPrefixNotationException {
         Double[] res = new Double[2];
-        if (stack.size() < 2)
+        if (stack.size() < 2) {
             throw new WrongPrefixNotationException("Wrong expression!");
+        }
         res[0] = stack.pop();
         res[1] = stack.pop();
         return res;
@@ -61,14 +62,15 @@ public class Expression {
      *
      * @return a real number
      */
-    private Double pop1Arg() throws WrongPrefixNotationException{
-        if (stack.empty())
+    private Double pop1Arg() throws WrongPrefixNotationException {
+        if (stack.empty()) {
             throw new WrongPrefixNotationException("Wrong expression!");
+        }
         return stack.pop();
     }
 
     /**
-     * A method that calculates a single operation from an expression
+     * A method that calculates a single operation from an expression.
      *
      * @param operator one of the operators +, -, *, /, log, pow, sqrt, sin, cos
      * (In the operator log: the first argument is the base of the logarithm, the second - the number)

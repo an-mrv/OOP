@@ -51,7 +51,7 @@ public class Tests {
     }
 
     @Test
-    public void WrongPrefixNotationException() {
+    public void testWrongPrefixNotationException() {
         Expression exp1 = new Expression("* sin + - 1 2 1");
         Assertions.assertThrows(WrongPrefixNotationException.class, exp1::calculate);
 
