@@ -163,6 +163,7 @@ public class Server {
 
         /**
          * Set the list.
+         *
          * @param list the part of the source list that the client needs to process
          */
         public void setList(List<Integer> list) {
@@ -171,6 +172,7 @@ public class Server {
 
         /**
          * Get the socket for communication with the client.
+         *
          * @return socket
          */
         public Socket getSocket() {
@@ -179,6 +181,7 @@ public class Server {
 
         /**
          * Get the input stream for communication with the client.
+         *
          * @return input stream
          */
         public Scanner getIn() {
@@ -187,6 +190,7 @@ public class Server {
 
         /**
          * Get the output stream for communication with the client.
+         *
          * @return output stream
          */
         public PrintWriter getOut() {
@@ -197,7 +201,8 @@ public class Server {
          * Run the thread.
          * If the computing node does not respond, then try again after 5 seconds.
          * If there is no response, then looking for an active client in the server list.
-         * if the number of active clients is 0, then the server thread does the client's work itself.
+         * if the number of active clients is 0, then the server thread does the client's work
+         * itself.
          */
         @Override
         public void run() {
@@ -245,7 +250,7 @@ public class Server {
          */
         private void findFreeClient() {
             int i = 0;
-            while(true) {
+            while (true) {
                 if (numberOfActiveClients.get() == 0) {
                     hasNotPrime.set(Check.hasNotPrime(this.list));
                     break;
