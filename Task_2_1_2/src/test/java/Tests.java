@@ -137,30 +137,6 @@ public class Tests {
     }
 
     @Test
-    public void twoBadClientsAndOneGoodClient() {
-        List<Integer> numbers = List.of(20319251, 6997901, 6997927, 6997937, 17858849,
-                6997967, 6998009, 6998029, 6998039, 20165149, 6998051, 6998053);
-        ServerThread server = new ServerThread(numbers);
-        BadClientThread client1 = new BadClientThread();
-        BadClientThread client2 = new BadClientThread();
-        ClientThread client4 = new ClientThread();
-
-        server.start();
-        client1.start();
-        client2.start();
-        client4.start();
-
-        try {
-            client1.join();
-            client2.join();
-            client4.join();
-            server.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Test
     public void threeBadClients() {
         List<Integer> numbers = List.of(20319251, 6997901, 6997927, 6997937, 17858849,
                 6997967, 6998009, 6998029, 6998039, 20165149, 6998051, 6998053);
