@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -175,6 +175,19 @@ extends java.lang.Thread</pre>
 <!--   -->
 </a>
 <h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.util.concurrent.atomic.AtomicBoolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#unavailable">unavailable</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="fields.inherited.from.class.java.lang.Thread">
 <!--   -->
@@ -199,8 +212,9 @@ extends java.lang.Thread</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.net.Socket,java.util.List)">ServerThread</a></span>&#8203;(java.net.Socket&nbsp;socket,
-            java.util.List&lt;java.lang.Integer&gt;&nbsp;list)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.net.Socket,java.util.Scanner,java.io.PrintWriter)">ServerThread</a></span>&#8203;(java.net.Socket&nbsp;socket,
+            java.util.Scanner&nbsp;in,
+            java.io.PrintWriter&nbsp;out)</code></th>
 <td class="colLast">
 <div class="block">Constructor.</div>
 </td>
@@ -224,10 +238,38 @@ extends java.lang.Thread</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>java.util.Scanner</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getIn()">getIn</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the input stream for communication with the client.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.io.PrintWriter</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOut()">getOut</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the output stream for communication with the client.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>java.net.Socket</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSocket()">getSocket</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the socket for communication with the client.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#run()">run</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Run the thread.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setList(java.util.List)">setList</a></span>&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;list)</code></th>
+<td class="colLast">
+<div class="block">Set the list.</div>
 </td>
 </tr>
 </table>
@@ -254,6 +296,25 @@ extends java.lang.Thread</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="unavailable">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>unavailable</h4>
+<pre>public&nbsp;java.util.concurrent.atomic.AtomicBoolean unavailable</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section>
 <ul class="blockList">
@@ -261,20 +322,22 @@ extends java.lang.Thread</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.net.Socket,java.util.List)">
+<a id="&lt;init&gt;(java.net.Socket,java.util.Scanner,java.io.PrintWriter)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ServerThread</h4>
 <pre>public&nbsp;ServerThread&#8203;(java.net.Socket&nbsp;socket,
-                    java.util.List&lt;java.lang.Integer&gt;&nbsp;list)
+                    java.util.Scanner&nbsp;in,
+                    java.io.PrintWriter&nbsp;out)
              throws java.io.IOException</pre>
 <div class="block">Constructor.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>socket</code> - socket for interaction with the client</dd>
-<dd><code>list</code> - the part of the source list that the client needs to process</dd>
+<dd><code>in</code> - input stream</dd>
+<dd><code>out</code> - output stream</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
 </dl>
@@ -290,6 +353,62 @@ extends java.lang.Thread</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="setList(java.util.List)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setList</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setList&#8203;(java.util.List&lt;java.lang.Integer&gt;&nbsp;list)</pre>
+<div class="block">Set the list.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>list</code> - the part of the source list that the client needs to process</dd>
+</dl>
+</li>
+</ul>
+<a id="getSocket()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSocket</h4>
+<pre class="methodSignature">public&nbsp;java.net.Socket&nbsp;getSocket()</pre>
+<div class="block">Get the socket for communication with the client.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>socket</dd>
+</dl>
+</li>
+</ul>
+<a id="getIn()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getIn</h4>
+<pre class="methodSignature">public&nbsp;java.util.Scanner&nbsp;getIn()</pre>
+<div class="block">Get the input stream for communication with the client.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>input stream</dd>
+</dl>
+</li>
+</ul>
+<a id="getOut()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOut</h4>
+<pre class="methodSignature">public&nbsp;java.io.PrintWriter&nbsp;getOut()</pre>
+<div class="block">Get the output stream for communication with the client.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>output stream</dd>
+</dl>
+</li>
+</ul>
 <a id="run()">
 <!--   -->
 </a>
@@ -299,7 +418,8 @@ extends java.lang.Thread</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;run()</pre>
 <div class="block">Run the thread.
  If the computing node does not respond, then try again after 5 seconds.
- If there is no response, then the server thread does the client's work itself.</div>
+ If there is no response, then looking for an active client in the server list.
+ if the number of active clients is 0, then the server thread does the client's work itself.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>run</code>&nbsp;in interface&nbsp;<code>java.lang.Runnable</code></dd>
@@ -365,7 +485,7 @@ extends java.lang.Thread</pre>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
