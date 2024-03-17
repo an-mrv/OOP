@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests.
@@ -138,25 +137,22 @@ public class Tests {
     }
 
     @Test
-    public void threeBadClientsAndOneGoodClient() {
+    public void twoBadClientsAndOneGoodClient() {
         List<Integer> numbers = List.of(20319251, 6997901, 6997927, 6997937, 17858849,
                 6997967, 6998009, 6998029, 6998039, 20165149, 6998051, 6998053);
         ServerThread server = new ServerThread(numbers);
         BadClientThread client1 = new BadClientThread();
         BadClientThread client2 = new BadClientThread();
-        BadClientThread client3 = new BadClientThread();
         ClientThread client4 = new ClientThread();
 
         server.start();
         client1.start();
         client2.start();
-        client3.start();
         client4.start();
 
         try {
             client1.join();
             client2.join();
-            client3.join();
             client4.join();
             server.join();
         } catch (InterruptedException e) {

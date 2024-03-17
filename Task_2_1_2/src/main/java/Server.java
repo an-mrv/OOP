@@ -124,10 +124,10 @@ public class Server {
             if (!currentTread.unavailable.get()) {
                 Socket socket = currentTread.getSocket();
                 PrintWriter out = currentTread.getOut();
-                Scanner in = currentTread.getIn();
                 out.println(-1);
                 out.flush();
                 out.close();
+                Scanner in = currentTread.getIn();
                 in.close();
                 try {
                     socket.close();

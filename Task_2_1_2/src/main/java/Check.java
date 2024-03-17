@@ -25,7 +25,7 @@ public class Check {
      * @param num the number
      * @return is the number prime or not
      */
-    private static Boolean isNotPrime (Integer num) {
+    private static Boolean isNotPrime(Integer num) {
         if (num == 0 || num == 1) {
             return true;
         }
