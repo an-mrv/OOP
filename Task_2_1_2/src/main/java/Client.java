@@ -26,10 +26,12 @@ public class Client {
                 if (in.hasNextInt()) {
                     size = in.nextInt();
                 }
-                if (size == 0) {
+                if (size == -1) {
                     in.close();
                     out.close();
                     break;
+                } else if (size == 0) {
+                    continue;
                 }
                 for (int i = 0; i < size; i++) {
                     if (in.hasNextInt()) {
