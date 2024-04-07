@@ -1,0 +1,44 @@
+{
+  "orders": [
+    {
+      "address": "Street1",
+      "deliveryTime": 60
+    },
+    {
+      "address": "Street2",
+      "deliveryTime": 100
+    },
+    {
+      "address": "Street3",
+      "deliveryTime": 120
+    },
+    {
+      "address": "Street4",
+      "deliveryTime": 50
+    },
+    {
+      "address": "Street5",
+      "deliveryTime": 80
+    },
+    {
+      "address": "Street6",
+      "deliveryTime": 100
+    },
+    {
+      "address": "Street7",
+      "deliveryTime": 150
+    },
+    {
+      "address": "Street8",
+      "deliveryTime": 50
+    },
+    {
+      "address": "Street9",
+      "deliveryTime": 70
+    },
+    {
+      "address": "Street10",
+      "deliveryTime": 90
+    }
+  ]
+}
