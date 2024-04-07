@@ -1,9 +1,8 @@
-import java.util.logging.Logger;
-
 import java.util.ArrayDeque;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 /**
  * Class for a pizzeria.
@@ -18,6 +17,7 @@ public class Pizzeria {
     private Integer workingDayTime;
     private Integer idNumber = 1;
     private static Logger log;
+
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tT:%1$tL] [%4$-7s] %5$s %n");
@@ -29,14 +29,14 @@ public class Pizzeria {
      *
      * @param bakers list of bakers
      * @param couriers list of couriers
-     * @param storageСapacity the number of pizzas that can be in storage at the same time
+     * @param storageCapacity the number of pizzas that can be in storage at the same time
      * @param workingDayTime working day length
      */
-    public Pizzeria(List<Baker> bakers, List<Courier> couriers, int storageСapacity, int workingDayTime) {
+    public Pizzeria(List<Baker> bakers, List<Courier> couriers, int storageCapacity, int workingDayTime) {
         this.bakers = bakers;
         this.couriers = couriers;
         this.workingDayTime = workingDayTime;
-        this.forDelivery = new SynchronizedQueue<>(new ArrayDeque<>(), storageСapacity);
+        this.forDelivery = new SynchronizedQueue<>(new ArrayDeque<>(), storageCapacity);
         this.forBaking = new SynchronizedQueue<>(new ArrayDeque<>(), bakers.size());
         this.isOpen = new AtomicBoolean(false);
         this.deliveredOrders = new AtomicInteger(0);
@@ -60,7 +60,7 @@ public class Pizzeria {
     /**
      * The working day time includes the starting of the day, its length and the ending.
      */
-    public void WorkingDay() throws InterruptedException {
+    public void workingDay() throws InterruptedException {
         startWorkingDay();
         log.info("Working day started!");
         Thread.sleep(workingDayTime);

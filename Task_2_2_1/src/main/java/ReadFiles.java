@@ -1,12 +1,11 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.parser.ParseException;
 
 /**
  * Class for reading JSON files.
@@ -23,7 +22,7 @@ public class ReadFiles {
         Object o = new JSONParser().parse(new FileReader(file));
         JSONObject j = (JSONObject) o;
         JSONArray array = (JSONArray) j.get("orders");
-        for(Object obj : array) {
+        for (Object obj : array) {
             JSONObject order = (JSONObject) obj;
             String address = (String) order.get("address");
             int deliveryTime = ((Long) order.get("deliveryTime")).intValue();
@@ -44,7 +43,7 @@ public class ReadFiles {
         Object o = new JSONParser().parse(new FileReader(file));
         JSONObject j = (JSONObject) o;
         JSONArray array = (JSONArray) j.get("bakers");
-        for(Object obj : array) {
+        for (Object obj : array) {
             JSONObject baker = (JSONObject) obj;
             String name = (String) baker.get("name");
             int bakingTime = ((Long) baker.get("bakingTime")).intValue();
@@ -52,15 +51,15 @@ public class ReadFiles {
         }
 
         array = (JSONArray) j.get("couriers");
-        for(Object obj : array) {
+        for (Object obj : array) {
             JSONObject courier = (JSONObject) obj;
             String name = (String) courier.get("name");
-            int bagСapacity = ((Long) courier.get("bagСapacity")).intValue();
-            couriers.add(new Courier(name, bagСapacity));
+            int bagCapacity = ((Long) courier.get("bagCapacity")).intValue();
+            couriers.add(new Courier(name, bagCapacity));
         }
 
-        int storageСapacity = ((Long) j.get("storageСapacity")).intValue();
+        int storageCapacity = ((Long) j.get("storageCapacity")).intValue();
         int workingDayTime = ((Long) j.get("workingDayTime")).intValue();
-        return new Pizzeria(bakers, couriers, storageСapacity, workingDayTime);
+        return new Pizzeria(bakers, couriers, storageCapacity, workingDayTime);
     }
 }

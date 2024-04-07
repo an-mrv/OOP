@@ -12,7 +12,7 @@ public class SynchronizedQueue<T> {
     /**
      * Constructor.
      *
-     * @param queue an unsynchronized queue
+     * @param queue an un synchronized queue
      * @param maxLen maximum allowed queue length
      */
     public SynchronizedQueue(Queue<T> queue, Integer maxLen) {

@@ -17,7 +17,7 @@ public class Client extends Thread {
             if (!result) {
                 break;
             }
-            Thread.sleep((int) (Math.random() * 200)+1);
+            Thread.sleep((int) (Math.random() * 200) + 1);
         }
     }
 

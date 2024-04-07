@@ -1,8 +1,7 @@
 import org.json.simple.parser.ParseException;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for Task_2_2_1.
@@ -14,7 +13,7 @@ public class Tests {
         Pizzeria pizzeria = ReadFiles.pizzeriaRead("src/test/resources/pizzeria.json");
         var pizzeriaThread = new Thread(() -> {
             try {
-                pizzeria.WorkingDay();
+                pizzeria.workingDay();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

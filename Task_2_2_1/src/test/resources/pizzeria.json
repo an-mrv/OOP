@@ -12,13 +12,13 @@
   "couriers": [
     {
       "name": "Cname1",
-      "bagСapacity": 1
+      "bagCapacity": 1
     },
     {
       "name": "Cname2",
-      "bagСapacity": 2
+      "bagCapacity": 2
     }
   ],
-  "storageСapacity": 3,
+  "storageCapacity": 3,
   "workingDayTime": 500
 }

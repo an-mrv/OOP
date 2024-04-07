@@ -8,6 +8,7 @@ public class Baker extends Thread {
     private Integer bakingTime;
     private Pizzeria pizzeria;
     private static Logger log;
+
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tT:%1$tL] [%4$-7s] %5$s %n");

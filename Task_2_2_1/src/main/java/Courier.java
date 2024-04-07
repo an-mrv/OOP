@@ -7,9 +7,10 @@ import java.util.logging.Logger;
  */
 public class Courier extends Thread {
     private String name;
-    private Integer bagСapacity;
+    private Integer bagCapacity;
     private Pizzeria pizzeria;
     private static Logger log;
+
     static {
         System.setProperty("java.util.logging.SimpleFormatter.format",
                 "[%1$tT:%1$tL] [%4$-7s] %5$s %n");
@@ -20,11 +21,11 @@ public class Courier extends Thread {
      * Constructor.
      *
      * @param name courier's name
-     * @param bagСapacity the number of pizzas that the courier can put in his bag
+     * @param bagCapacity the number of pizzas that the courier can put in his bag
      */
-    public Courier(String name, Integer bagСapacity) {
+    public Courier(String name, Integer bagCapacity) {
         this.name = name;
-        this.bagСapacity = bagСapacity;
+        this.bagCapacity = bagCapacity;
     }
 
     /**
@@ -43,7 +44,7 @@ public class Courier extends Thread {
             int totalDeliveryTime = 0;
             List<Order> pickedOrders = new ArrayList<>();
             try {
-                for (int i = 0; i < this.bagСapacity; i++) {
+                for (int i = 0; i < this.bagCapacity; i++) {
                     Order order = pizzeria.forDelivery.get();
                     pickedOrders.add(order);
                     totalDeliveryTime += order.getDeliveryTime();
