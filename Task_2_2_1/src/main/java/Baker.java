@@ -49,6 +49,7 @@ public class Baker extends Thread {
                 pizzeria.forDelivery.add(order);
                 log.info("[" + order.getId() + "]" + " [was put by baker "
                         + this.name + " to the storage]");
+                pizzeria.bakedOrders.getAndIncrement();
             } catch (InterruptedException e) {
                 log.info("Baker " +  this.name + " finished to work.");
             }

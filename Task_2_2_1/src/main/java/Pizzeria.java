@@ -12,6 +12,7 @@ public class Pizzeria {
     public SynchronizedQueue<Order> forBaking;
     public AtomicBoolean isOpen;
     public AtomicInteger deliveredOrders;
+    public AtomicInteger bakedOrders;
     private List<Baker> bakers;
     private List<Courier> couriers;
     private Integer workingDayTime;
@@ -40,6 +41,7 @@ public class Pizzeria {
         this.forBaking = new SynchronizedQueue<>(new ArrayDeque<>(), bakers.size());
         this.isOpen = new AtomicBoolean(false);
         this.deliveredOrders = new AtomicInteger(0);
+        this.bakedOrders = new AtomicInteger(0);
     }
 
     /**
@@ -86,7 +88,7 @@ public class Pizzeria {
             log.info("[" + order.getId() + "] [was added to the queue]");
             return true;
         } else {
-            log.info("Order to the " + order.getAddress() + " was rejected\n");
+            log.info("Order to the " + order.getAddress() + " was rejected");
             return false;
         }
     }
@@ -98,12 +100,12 @@ public class Pizzeria {
     private void finishWorkingDay() {
         isOpen.set(false);
         log.info("Pizzeria closed!");
-        while (forBaking.size() != 0) {
+        while (this.bakedOrders.get() != (this.idNumber-1)) {
         }
         for (Baker baker : bakers) {
             baker.interrupt();
         }
-        while ((forDelivery.size() != 0) && (this.deliveredOrders.get() != this.idNumber)) {
+        while (this.deliveredOrders.get() != (this.idNumber-1)) {
         }
         for (Courier courier : couriers) {
             courier.interrupt();

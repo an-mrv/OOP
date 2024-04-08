@@ -44,11 +44,22 @@ public class Courier extends Thread {
             int totalDeliveryTime = 0;
             List<Order> pickedOrders = new ArrayList<>();
             try {
-                for (int i = 0; i < this.bagCapacity; i++) {
+                int amountOfPickedPizzas = this.bagCapacity;
+                int count = pizzeria.forDelivery.size();
+                while (!pizzeria.isOpen.get()) {
+                    if (count < bagCapacity && (count != 0)) {
+                        amountOfPickedPizzas = count;
+                        break;
+                    }
+                    count = pizzeria.forDelivery.size();
+                }
+
+                for (int i = 0; i < amountOfPickedPizzas; i++) {
                     Order order = pizzeria.forDelivery.get();
                     pickedOrders.add(order);
                     totalDeliveryTime += order.getDeliveryTime();
                 }
+
                 String message = "[";
                 for (int i = 0; i < pickedOrders.size(); i++) {
                     if (i == pickedOrders.size() - 1) {
