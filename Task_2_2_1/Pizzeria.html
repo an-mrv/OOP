@@ -154,20 +154,25 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.concurrent.atomic.AtomicInteger</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deliveredOrders">deliveredOrders</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#bakedOrders">bakedOrders</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="SynchronizedQueue.html" title="class in &lt;Unnamed&gt;">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in &lt;Unnamed&gt;">Order</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#forBaking">forBaking</a></span></code></th>
+<td class="colFirst"><code>java.util.concurrent.atomic.AtomicInteger</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#deliveredOrders">deliveredOrders</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="SynchronizedQueue.html" title="class in &lt;Unnamed&gt;">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in &lt;Unnamed&gt;">Order</a>&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#forDelivery">forDelivery</a></span></code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#forBaking">forBaking</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="SynchronizedQueue.html" title="class in &lt;Unnamed&gt;">SynchronizedQueue</a>&lt;<a href="Order.html" title="class in &lt;Unnamed&gt;">Order</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#forDelivery">forDelivery</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>java.util.concurrent.atomic.AtomicBoolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isOpen">isOpen</a></span></code></th>
 <td class="colLast">&nbsp;</td>
@@ -287,10 +292,19 @@ extends java.lang.Object</pre>
 <a id="deliveredOrders">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>deliveredOrders</h4>
 <pre>public&nbsp;java.util.concurrent.atomic.AtomicInteger deliveredOrders</pre>
+</li>
+</ul>
+<a id="bakedOrders">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>bakedOrders</h4>
+<pre>public&nbsp;java.util.concurrent.atomic.AtomicInteger bakedOrders</pre>
 </li>
 </ul>
 </li>
