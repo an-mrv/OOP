@@ -100,12 +100,12 @@ public class Pizzeria {
     private void finishWorkingDay() {
         isOpen.set(false);
         log.info("Pizzeria closed!");
-        while (this.bakedOrders.get() != (this.idNumber-1)) {
+        while (this.bakedOrders.get() != (this.idNumber - 1)) {
         }
         for (Baker baker : bakers) {
             baker.interrupt();
         }
-        while (this.deliveredOrders.get() != (this.idNumber-1)) {
+        while (this.deliveredOrders.get() != (this.idNumber - 1)) {
         }
         for (Courier courier : couriers) {
             courier.interrupt();
