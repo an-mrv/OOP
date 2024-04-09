@@ -60,15 +60,14 @@ public class Courier extends Thread {
                     totalDeliveryTime += order.getDeliveryTime();
                 }
 
-                String message = "[";
+                StringBuffer message = new StringBuffer("[");
                 for (int i = 0; i < pickedOrders.size(); i++) {
-                    if (i == pickedOrders.size() - 1) {
-                        message += (pickedOrders.get(i).getId());
-                    } else {
-                        message += (pickedOrders.get(i).getId() + " ");
+                    message.append(pickedOrders.get(i).getId());
+                    if (i < (pickedOrders.size() - 1)) {
+                        message.append(" ");
                     }
                 }
-                message += "]";
+                message.append("]");
                 log.info(message + " [were picked by courier " + this.name + "]");
                 Thread.sleep(totalDeliveryTime);
                 log.info(message + " [were delivered by courier " + this.name + "]");
