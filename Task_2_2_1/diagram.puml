@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Pizzeria {
+}
+
+class Baker {
+}
+
+class Courier {
+}
+
+class ReadFiles {
+}
+
+class Order {
+}
+
+class SynchronizedQueue {
+}
+
+class Client {
+}
+
+class Tests {
+}
+
+Pizzeria o- Baker
+Pizzeria o- Courier
+Pizzeria --> Order
+Pizzeria --> SynchronizedQueue
+Baker ...> SynchronizedQueue
+Courier ...> SynchronizedQueue
+Baker ...> Order
+Courier ...> Order
+Client ...> Pizzeria
+Tests ...> ReadFiles
+Tests ...> Pizzeria
+Tests ...> Client
+Order <... ReadFiles
+Pizzeria <... ReadFiles
+Baker <... ReadFiles
+Courier <... ReadFiles
+Order <... Client
+
+
+@enduml

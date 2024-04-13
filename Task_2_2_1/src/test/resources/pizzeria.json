@@ -1,0 +1,24 @@
+{
+  "bakers": [
+    {
+      "name": "Bname1",
+      "bakingTime": 100
+    },
+    {
+      "name": "Bname2",
+      "bakingTime": 120
+    }
+  ],
+  "couriers": [
+    {
+      "name": "Cname1",
+      "bagCapacity": 1
+    },
+    {
+      "name": "Cname2",
+      "bagCapacity": 2
+    }
+  ],
+  "storageCapacity": 3,
+  "workingDayTime": 500
+}
