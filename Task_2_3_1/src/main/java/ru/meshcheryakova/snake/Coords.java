@@ -41,9 +41,10 @@ public class Coords {
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof Coords other)) {
+        if (!(obj instanceof Coords)) {
             return false;
         }
+        Coords other = (Coords) obj;
         return (this.x == other.getX()) && (this.y == other.getY());
     }
 }
