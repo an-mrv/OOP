@@ -33,13 +33,13 @@ public class Game {
     private Text totalScoreText;
     private List<Circle> eyes = new ArrayList<>();
     private final Coords[] obstacles = new Coords[] {new Coords(4, 0), new Coords(4, 1),
-            new Coords(4, 2), new Coords(4, 3), new Coords(1, 6),
-            new Coords(2, 6), new Coords(2, 7), new Coords(4, 15),
-            new Coords(4, 14), new Coords(4, 13), new Coords(4, 12),
-            new Coords(4, 11), new Coords(4, 10), new Coords(12, 3),
-            new Coords(13, 3), new Coords(14, 3), new Coords(14, 4),
-            new Coords(14, 15), new Coords(14, 14), new Coords(14, 13),
-            new Coords(14, 12), new Coords(4, 0)};
+        new Coords(4, 2), new Coords(4, 3), new Coords(1, 6),
+        new Coords(2, 6), new Coords(2, 7), new Coords(4, 15),
+        new Coords(4, 14), new Coords(4, 13), new Coords(4, 12),
+        new Coords(4, 11), new Coords(4, 10), new Coords(12, 3),
+        new Coords(13, 3), new Coords(14, 3), new Coords(14, 4),
+        new Coords(14, 15), new Coords(14, 14), new Coords(14, 13),
+        new Coords(14, 12), new Coords(4, 0)};
 
     /**
      * Constructor.
@@ -232,17 +232,25 @@ public class Game {
         Coords snakeHead = this.snake.getHead();
 
         if (this.lastPressedKey.get() == RIGHT) {
-            eyesCoords.add(new Coords((snakeHead.getCordX() + 1) * 50, snakeHead.getCordY() * 50 + 12));
-            eyesCoords.add(new Coords((snakeHead.getCordX() + 1) * 50, snakeHead.getCordY() * 50 + 38));
+            eyesCoords.add(new Coords((snakeHead.getCordX() + 1) * 50,
+                    snakeHead.getCordY() * 50 + 12));
+            eyesCoords.add(new Coords((snakeHead.getCordX() + 1) * 50,
+                    snakeHead.getCordY() * 50 + 38));
         } else if (this.lastPressedKey.get() == LEFT) {
-            eyesCoords.add(new Coords(snakeHead.getCordX() * 50, snakeHead.getCordY() * 50 + 12));
-            eyesCoords.add(new Coords(snakeHead.getCordX() * 50, snakeHead.getCordY() * 50 + 38));
+            eyesCoords.add(new Coords(snakeHead.getCordX() * 50,
+                    snakeHead.getCordY() * 50 + 12));
+            eyesCoords.add(new Coords(snakeHead.getCordX() * 50,
+                    snakeHead.getCordY() * 50 + 38));
         } else if (this.lastPressedKey.get() == UP) {
-            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 12, snakeHead.getCordY() * 50));
-            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 38, snakeHead.getCordY() * 50));
+            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 12,
+                    snakeHead.getCordY() * 50));
+            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 38,
+                    snakeHead.getCordY() * 50));
         } else {
-            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 12, (snakeHead.getCordY() + 1) * 50));
-            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 38, (snakeHead.getCordY() + 1) * 50));
+            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 12,
+                    (snakeHead.getCordY() + 1) * 50));
+            eyesCoords.add(new Coords(snakeHead.getCordX() * 50 + 38,
+                    (snakeHead.getCordY() + 1) * 50));
         }
         return eyesCoords;
     }
