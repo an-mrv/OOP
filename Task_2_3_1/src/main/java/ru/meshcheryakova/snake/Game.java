@@ -5,16 +5,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import static javafx.scene.input.KeyCode.*;
+import static javafx.scene.input.KeyCode.RIGHT;
+import static javafx.scene.input.KeyCode.LEFT;
+import static javafx.scene.input.KeyCode.UP;
 
 /**
  * Class to control the game.
@@ -68,8 +70,8 @@ public class Game {
         }
 
         List<Coords> eyesCoords = findEyesLocation();
-        this.eyes.add(new Circle(eyesCoords.get(0).x(), eyesCoords.get(0).y(), 5, Color.BLACK));
-        this.eyes.add(new Circle(eyesCoords.get(1).x(), eyesCoords.get(1).y(), 5, Color.BLACK));
+        this.eyes.add(new Circle(eyesCoords.get(0).getX(), eyesCoords.get(0).getY(), 5, Color.BLACK));
+        this.eyes.add(new Circle(eyesCoords.get(1).getX(), eyesCoords.get(1).getY(), 5, Color.BLACK));
         this.rootGame.getChildren().addAll(this.eyes.get(0), this.eyes.get(1));
     }
 
@@ -85,29 +87,29 @@ public class Game {
 
         switch (lastPressedKey.get()) {
             case RIGHT:
-                newHead = new Coords((snake.getHead().x() + 1) % 21, snake.getHead().y());
+                newHead = new Coords((snake.getHead().getX() + 1) % 21, snake.getHead().getY());
                 break;
             case LEFT:
-                newHead = new Coords((snake.getHead().x() - 1 + 21) % 21, snake.getHead().y());
+                newHead = new Coords((snake.getHead().getX() - 1 + 21) % 21, snake.getHead().getY());
                 break;
             case UP:
-                newHead = new Coords(snake.getHead().x(), (snake.getHead().y() - 1 + 16) % 16);
+                newHead = new Coords(snake.getHead().getX(), (snake.getHead().getY() - 1 + 16) % 16);
                 break;
             case DOWN:
-                newHead = new Coords(snake.getHead().x(), (snake.getHead().y() + 1) % 16);
+                newHead = new Coords(snake.getHead().getX(), (snake.getHead().getY() + 1) % 16);
                 break;
             default:
                 break;
         }
 
         this.checkCollision(newHead);
-        field[snake.getHead().x()][snake.getHead().y()].setFill(Color.RED);
+        field[snake.getHead().getX()][snake.getHead().getY()].setFill(Color.RED);
 
         List<Coords> eyesCoords = findEyesLocation();
-        this.eyes.get(0).setCenterX(eyesCoords.get(0).x());
-        this.eyes.get(0).setCenterY(eyesCoords.get(0).y());
-        this.eyes.get(1).setCenterX(eyesCoords.get(1).x());
-        this.eyes.get(1).setCenterY(eyesCoords.get(1).y());
+        this.eyes.get(0).setCenterX(eyesCoords.get(0).getX());
+        this.eyes.get(0).setCenterY(eyesCoords.get(0).getY());
+        this.eyes.get(1).setCenterX(eyesCoords.get(1).getX());
+        this.eyes.get(1).setCenterY(eyesCoords.get(1).getY());
     }
 
     /**
@@ -151,10 +153,10 @@ public class Game {
         }
 
         List<Coords> eyesCoords = findEyesLocation();
-        this.eyes.get(0).setCenterX(eyesCoords.get(0).x());
-        this.eyes.get(0).setCenterY(eyesCoords.get(0).y());
-        this.eyes.get(1).setCenterX(eyesCoords.get(1).x());
-        this.eyes.get(1).setCenterY(eyesCoords.get(1).y());
+        this.eyes.get(0).setCenterX(eyesCoords.get(0).getX());
+        this.eyes.get(0).setCenterY(eyesCoords.get(0).getY());
+        this.eyes.get(1).setCenterX(eyesCoords.get(1).getX());
+        this.eyes.get(1).setCenterY(eyesCoords.get(1).getY());
     }
 
     /**
@@ -189,15 +191,12 @@ public class Game {
         Text toEat = new Text(1060, 30, "To eat:");
         toEat.setFont(Font.font("Verdana", 30));
 
-        Circle foodYellow = new Circle(1085, 65, 25, Color.YELLOW);
         Text foodYellowText = new Text(1120, 75, "0/5");
         foodYellowText.setFont(Font.font("Verdana", 30));
 
-        Circle foodBlue = new Circle(1085, 125, 25, Color.BLUE);
         Text foodBlueText = new Text(1120, 135, "0/5");
         foodBlueText.setFont(Font.font("Verdana", 30));
 
-        Circle foodOrange = new Circle(1085, 185, 25, Color.ORANGE);
         Text foodOrangeText = new Text(1120, 195, "0/5");
         foodOrangeText.setFont(Font.font("Verdana", 30));
 
@@ -207,6 +206,10 @@ public class Game {
         this.food.put("Yellow", new Food(foodYellowText));
         this.food.put("Blue", new Food(foodBlueText));
         this.food.put("Orange", new Food(foodOrangeText));
+
+        Circle foodYellow = new Circle(1085, 65, 25, Color.YELLOW);
+        Circle foodBlue = new Circle(1085, 125, 25, Color.BLUE);
+        Circle foodOrange = new Circle(1085, 185, 25, Color.ORANGE);
 
         this.rootGame.getChildren().addAll(rectangle, toEat, foodYellow, foodYellowText, foodBlue,
                 foodBlueText, foodOrange, foodOrangeText, this.totalScoreText);
@@ -223,17 +226,17 @@ public class Game {
         Coords snakeHead = this.snake.getHead();
 
         if (this.lastPressedKey.get() == RIGHT) {
-            eyesCoords.add(new Coords((snakeHead.x() + 1) * 50, snakeHead.y() * 50 + 12));
-            eyesCoords.add(new Coords((snakeHead.x() + 1) * 50, snakeHead.y() * 50 + 38));
+            eyesCoords.add(new Coords((snakeHead.getX() + 1) * 50, snakeHead.getY() * 50 + 12));
+            eyesCoords.add(new Coords((snakeHead.getX() + 1) * 50, snakeHead.getY() * 50 + 38));
         } else if (this.lastPressedKey.get() == LEFT) {
-            eyesCoords.add(new Coords(snakeHead.x() * 50, snakeHead.y() * 50 + 12));
-            eyesCoords.add(new Coords(snakeHead.x() * 50, snakeHead.y() * 50 + 38));
+            eyesCoords.add(new Coords(snakeHead.getX() * 50, snakeHead.getY() * 50 + 12));
+            eyesCoords.add(new Coords(snakeHead.getX() * 50, snakeHead.getY() * 50 + 38));
         } else if (this.lastPressedKey.get() == UP) {
-            eyesCoords.add(new Coords(snakeHead.x() * 50 + 12, snakeHead.y() * 50));
-            eyesCoords.add(new Coords(snakeHead.x() * 50 + 38, snakeHead.y() * 50));
+            eyesCoords.add(new Coords(snakeHead.getX() * 50 + 12, snakeHead.getY() * 50));
+            eyesCoords.add(new Coords(snakeHead.getX() * 50 + 38, snakeHead.getY() * 50));
         } else {
-            eyesCoords.add(new Coords(snakeHead.x() * 50 + 12, (snakeHead.y() + 1) * 50));
-            eyesCoords.add(new Coords(snakeHead.x() * 50 + 38, (snakeHead.y() + 1) * 50));
+            eyesCoords.add(new Coords(snakeHead.getX() * 50 + 12, (snakeHead.getY() + 1) * 50));
+            eyesCoords.add(new Coords(snakeHead.getX() * 50 + 38, (snakeHead.getY() + 1) * 50));
         }
         return eyesCoords;
     }
@@ -263,8 +266,8 @@ public class Game {
             int amountOfFood = currFood.getAmountOfFood();
             for (int i = 0; i < amountOfFood; i++) {
                 Circle currFoodElem = currFood.getFood(i);
-                if ((currFoodElem.getCenterX() + 25) % 50 == x &&
-                        (currFoodElem.getCenterY() + 25) % 50 == y) {
+                if ((currFoodElem.getCenterX() + 25) % 50 == x
+                        && (currFoodElem.getCenterY() + 25) % 50 == y) {
                     this.generateFood(color);
                     return;
                 }
@@ -305,8 +308,8 @@ public class Game {
             int amountOfFood = currFood.getAmountOfFood();
             for (int i = 0; i < amountOfFood; i++) {
                 Circle currFoodElem = currFood.getFood(i);
-                if (newHead.x() == (((int) currFoodElem.getCenterX() + 25) / 50 - 1)
-                        && newHead.y() == ((int) currFoodElem.getCenterY() + 25) / 50 - 1) {
+                if (newHead.getX() == (((int) currFoodElem.getCenterX() + 25) / 50 - 1)
+                        && newHead.getY() == ((int) currFoodElem.getCenterY() + 25) / 50 - 1) {
                     this.rootGame.getChildren().remove(currFoodElem);
                     currFood.incCount();
                     totalScore.getAndIncrement();
@@ -330,7 +333,7 @@ public class Game {
             return;
         }
 
-        field[snake.getTail().x()][snake.getTail().y()].setFill(Color.LIGHTGREEN);
+        field[snake.getTail().getX()][snake.getTail().getY()].setFill(Color.LIGHTGREEN);
         snake.changeSnake(newHead);
     }
 

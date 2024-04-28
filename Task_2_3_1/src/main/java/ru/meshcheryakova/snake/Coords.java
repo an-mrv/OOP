@@ -10,8 +10,8 @@ public class Coords {
     /**
      * Constructor.
      *
-     * @param x coordinate x
-     * @param y coordinate y
+     * @param x coordinate getX
+     * @param y coordinate getY
      */
     public Coords(int x, int y) {
         this.x = x;
@@ -19,20 +19,20 @@ public class Coords {
     }
 
     /**
-     * Get the value of x coordinate.
+     * Get the value of getX coordinate.
      *
-     * @return the value of x coordinate
+     * @return the value of getX coordinate
      */
-    public int x() {
+    public int getX() {
         return x;
     }
 
     /**
-     * Get the value of y coordinate.
+     * Get the value of getY coordinate.
      *
-     * @return the value of y coordinate
+     * @return the value of getY coordinate
      */
-    public int y() {
+    public int getY() {
         return y;
     }
 
@@ -44,6 +44,6 @@ public class Coords {
         if (!(obj instanceof Coords other)) {
             return false;
         }
-        return (this.x == other.x()) && (this.y == other.y());
+        return (this.x == other.getX()) && (this.y == other.getY());
     }
 }
