@@ -4,36 +4,36 @@ package ru.meshcheryakova.snake;
  * Class for coordinates.
  */
 public class Coords {
-    private int x;
-    private int y;
+    private int cordX;
+    private int cordY;
 
     /**
      * Constructor.
      *
-     * @param x coordinate getX
-     * @param y coordinate getY
+     * @param x coordinate getCordX
+     * @param y coordinate getCordY
      */
     public Coords(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.cordX = x;
+        this.cordY = y;
     }
 
     /**
-     * Get the value of getX coordinate.
+     * Get the value of getCordX coordinate.
      *
-     * @return the value of getX coordinate
+     * @return the value of getCordX coordinate
      */
-    public int getX() {
-        return x;
+    public int getCordX() {
+        return cordX;
     }
 
     /**
-     * Get the value of getY coordinate.
+     * Get the value of getCordY coordinate.
      *
-     * @return the value of getY coordinate
+     * @return the value of getCordY coordinate
      */
-    public int getY() {
-        return y;
+    public int getCordY() {
+        return cordY;
     }
 
     @Override
@@ -45,6 +45,6 @@ public class Coords {
             return false;
         }
         Coords other = (Coords) obj;
-        return (this.x == other.getX()) && (this.y == other.getY());
+        return (this.cordX == other.getCordX()) && (this.cordY == other.getCordY());
     }
 }
