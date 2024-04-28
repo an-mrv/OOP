@@ -1,10 +1,9 @@
 package ru.meshcheryakova.snake;
 
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.text.Text;
 
 /**
  * Class for food.

@@ -47,7 +47,7 @@ public class TestSnake {
 
     @Test
     public void restartSnake() {
-        snake.restartSnake(new Coords(0,0));
+        snake.restartSnake(new Coords(0, 0));
         assertEquals(1, snake.getLen());
     }
 }

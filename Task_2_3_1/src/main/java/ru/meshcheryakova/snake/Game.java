@@ -6,14 +6,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import javafx.scene.text.Text;
 
 import static javafx.scene.input.KeyCode.*;
 
@@ -97,6 +96,8 @@ public class Game {
             case DOWN:
                 newHead = new Coords(snake.getHead().x(), (snake.getHead().y() + 1) % 16);
                 break;
+            default:
+                break;
         }
 
         this.checkCollision(newHead);
@@ -127,7 +128,7 @@ public class Game {
 
         this.win.set(false);
         this.gameOver.set(false);
-        this.snake.restartSnake(new Coords(12,6));
+        this.snake.restartSnake(new Coords(12, 6));
 
         for (int i = 0; i < 21; i++) {
             for (int j = 0; j < 16; j++) {
@@ -186,22 +187,22 @@ public class Game {
         rectangle.setFill(Color.GRAY);
 
         Text toEat = new Text(1060, 30, "To eat:");
-        toEat.setFont(Font.font ("Verdana", 30));
+        toEat.setFont(Font.font("Verdana", 30));
 
         Circle foodYellow = new Circle(1085, 65, 25, Color.YELLOW);
         Text foodYellowText = new Text(1120, 75, "0/5");
-        foodYellowText.setFont(Font.font ("Verdana", 30));
+        foodYellowText.setFont(Font.font("Verdana", 30));
 
         Circle foodBlue = new Circle(1085, 125, 25, Color.BLUE);
         Text foodBlueText = new Text(1120, 135, "0/5");
-        foodBlueText.setFont(Font.font ("Verdana", 30));
+        foodBlueText.setFont(Font.font("Verdana", 30));
 
         Circle foodOrange = new Circle(1085, 185, 25, Color.ORANGE);
         Text foodOrangeText = new Text(1120, 195, "0/5");
-        foodOrangeText.setFont(Font.font ("Verdana", 30));
+        foodOrangeText.setFont(Font.font("Verdana", 30));
 
         this.totalScoreText = new Text(1055, 245, "Total score: 0");
-        this.totalScoreText.setFont(Font.font ("Verdana", 18));
+        this.totalScoreText.setFont(Font.font("Verdana", 18));
 
         this.food.put("Yellow", new Food(foodYellowText));
         this.food.put("Blue", new Food(foodBlueText));
@@ -222,8 +223,8 @@ public class Game {
         Coords snakeHead = this.snake.getHead();
 
         if (this.lastPressedKey.get() == RIGHT) {
-            eyesCoords.add(new Coords((snakeHead.x()+1) * 50, snakeHead.y() * 50 + 12));
-            eyesCoords.add(new Coords((snakeHead.x()+1) * 50, snakeHead.y() * 50 + 38));
+            eyesCoords.add(new Coords((snakeHead.x() + 1) * 50, snakeHead.y() * 50 + 12));
+            eyesCoords.add(new Coords((snakeHead.x() + 1) * 50, snakeHead.y() * 50 + 38));
         } else if (this.lastPressedKey.get() == LEFT) {
             eyesCoords.add(new Coords(snakeHead.x() * 50, snakeHead.y() * 50 + 12));
             eyesCoords.add(new Coords(snakeHead.x() * 50, snakeHead.y() * 50 + 38));
@@ -304,17 +305,17 @@ public class Game {
             int amountOfFood = currFood.getAmountOfFood();
             for (int i = 0; i < amountOfFood; i++) {
                 Circle currFoodElem = currFood.getFood(i);
-                if (newHead.x() == (((int) currFoodElem.getCenterX() + 25) / 50 - 1) &&
-                        newHead.y() == ((int) currFoodElem.getCenterY() + 25) / 50 - 1) {
+                if (newHead.x() == (((int) currFoodElem.getCenterX() + 25) / 50 - 1)
+                        && newHead.y() == ((int) currFoodElem.getCenterY() + 25) / 50 - 1) {
                     this.rootGame.getChildren().remove(currFoodElem);
                     currFood.incCount();
                     totalScore.getAndIncrement();
                     totalScoreText.setText("Total score: " + totalScore.get());
                     snake.growSnake(newHead);
                     currFood.updateFoodText();
-                    if (this.food.get("Yellow").getCount() >= 5 &&
-                            this.food.get("Blue").getCount() >= 5 &&
-                            this.food.get("Orange").getCount() >= 5) {
+                    if (this.food.get("Yellow").getCount() >= 5
+                            && this.food.get("Blue").getCount() >= 5
+                            && this.food.get("Orange").getCount() >= 5) {
                         this.win.set(true);
                     }
                     this.generateFood(key);

@@ -70,7 +70,7 @@ public class Snake {
      * @param newHead new head coordinate
      */
     public void changeSnake(Coords newHead) {
-        this.snake.remove(len-1);
+        this.snake.remove(len - 1);
         this.snake.add(0, newHead);
     }
 

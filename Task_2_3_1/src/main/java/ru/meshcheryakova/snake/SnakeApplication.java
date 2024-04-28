@@ -12,11 +12,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import javafx.stage.Stage;
 
 import static javafx.scene.input.KeyCode.*;
 
@@ -57,11 +56,12 @@ public class SnakeApplication extends Application {
         rect.setY(50);
 
         Text welcomeText = new Text(350, 150, "Welcome to the Snake game!");
-        welcomeText.setFont(Font.font ("Verdana", FontWeight.BOLD, 30));
+        welcomeText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         welcomeText.setFill(Color.LIGHTGREEN);
 
-        Image image = new Image(new FileInputStream("src/main/resources/ru/meshcheryakova/snake/snake.png"),
-                200,200,false,true);
+        Image image = new Image(
+                new FileInputStream("src/main/resources/ru/meshcheryakova/snake/snake.png"),
+                200, 200, false, true);
         ImageView imageView = new ImageView(image);
         imageView.setX(500);
         imageView.setY(500);
@@ -70,7 +70,8 @@ public class SnakeApplication extends Application {
         startGame.setPrefSize(200, 100);
         startGame.setLayoutX(500);
         startGame.setLayoutY(200);
-        startGame.setStyle("-fx-font-size: 30; -fx-background-color: #90ee90; -fx-text-fill: #006400;");
+        startGame.setStyle("-fx-font-size: 30; -fx-background-color: #90ee90; "
+                + "-fx-text-fill: #006400;");
 
         Button exit1 = new Button("Exit");
         exit1.setPrefSize(200, 100);
@@ -100,12 +101,12 @@ public class SnakeApplication extends Application {
 
         rootGame.requestFocus();
         rootGame.setOnKeyPressed(event -> {
-            if (event.getCode() == RIGHT || event.getCode() == LEFT ||
-                    event.getCode() == UP ||event.getCode() == DOWN) {
-                if (!((event.getCode() == RIGHT && game.lastPressedKey.get() == LEFT) ||
-                        (event.getCode() == LEFT && game.lastPressedKey.get() == RIGHT) ||
-                        (event.getCode() == UP && game.lastPressedKey.get() == DOWN) ||
-                        (event.getCode() == DOWN && game.lastPressedKey.get() == UP))) {
+            if (event.getCode() == RIGHT || event.getCode() == LEFT
+                    || event.getCode() == UP || event.getCode() == DOWN) {
+                if (!((event.getCode() == RIGHT && game.lastPressedKey.get() == LEFT)
+                        || (event.getCode() == LEFT && game.lastPressedKey.get() == RIGHT)
+                        || (event.getCode() == UP && game.lastPressedKey.get() == DOWN)
+                        || (event.getCode() == DOWN && game.lastPressedKey.get() == UP))) {
                     game.lastPressedKey.set(event.getCode());
                 }
             }
@@ -125,7 +126,7 @@ public class SnakeApplication extends Application {
 
         Thread gameLogic = new Thread(() -> {
             Runnable updater = game::move;
-            while(true) {
+            while (true) {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -142,7 +143,7 @@ public class SnakeApplication extends Application {
                     scene.setRoot(rootGameOver);
                 }
             };
-            while(true) {
+            while (true) {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -159,7 +160,7 @@ public class SnakeApplication extends Application {
                     scene.setRoot(rootWin);
                 }
             };
-            while(true) {
+            while (true) {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -216,11 +217,11 @@ public class SnakeApplication extends Application {
 
         scoreForGameOver.setX(465);
         scoreForGameOver.setY(250);
-        scoreForGameOver.setFont(Font.font ("Verdana", FontWeight.BOLD, 40));
+        scoreForGameOver.setFont(Font.font("Verdana", FontWeight.BOLD, 40));
         scoreForGameOver.setFill(Color.LIGHTGREEN);
 
         Text textGameOver = new Text(450, 150, "Game over!");
-        textGameOver.setFont(Font.font ("Verdana", FontWeight.BOLD, 50));
+        textGameOver.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
         textGameOver.setFill(Color.LIGHTGREEN);
 
         Rectangle rect = new Rectangle(600, 700, Color.DARKGREEN);
@@ -230,8 +231,8 @@ public class SnakeApplication extends Application {
         restartGame.setPrefSize(300, 150);
         restartGame.setLayoutX(460);
         restartGame.setLayoutY(300);
-        restartGame.setStyle("-fx-font-size: 35; -fx-background-color: #90ee90; " +
-                "-fx-text-fill: #006400;");
+        restartGame.setStyle("-fx-font-size: 35; -fx-background-color: #90ee90; "
+                + "-fx-text-fill: #006400;");
 
         exit.setPrefSize(300, 150);
         exit.setLayoutX(460);
@@ -254,11 +255,11 @@ public class SnakeApplication extends Application {
 
         scoreForWin.setX(465);
         scoreForWin.setY(250);
-        scoreForWin.setFont(Font.font ("Verdana", FontWeight.BOLD, 40));
+        scoreForWin.setFont(Font.font("Verdana", FontWeight.BOLD, 40));
         scoreForWin.setFill(Color.LIGHTGREEN);
 
         Text textWin = new Text(450, 150, "You are win!");
-        textWin.setFont(Font.font ("Verdana", FontWeight.BOLD, 50));
+        textWin.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
         textWin.setFill(Color.LIGHTGREEN);
 
         Rectangle rect = new Rectangle(600, 700, Color.DARKGREEN);
@@ -268,8 +269,8 @@ public class SnakeApplication extends Application {
         restartGame.setPrefSize(300, 150);
         restartGame.setLayoutX(460);
         restartGame.setLayoutY(300);
-        restartGame.setStyle("-fx-font-size: 35; -fx-background-color: #90ee90; " +
-                "-fx-text-fill: #006400;");
+        restartGame.setStyle("-fx-font-size: 35; -fx-background-color: #90ee90; "
+                + "-fx-text-fill: #006400;");
 
         exit.setPrefSize(300, 150);
         exit.setLayoutX(460);
