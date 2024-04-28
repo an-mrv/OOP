@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"ru.meshcheryakova.snake"}]
