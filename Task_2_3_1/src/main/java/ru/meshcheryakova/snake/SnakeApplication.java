@@ -1,5 +1,13 @@
 package ru.meshcheryakova.snake;
 
+import static javafx.scene.input.KeyCode.DOWN;
+import static javafx.scene.input.KeyCode.LEFT;
+import static javafx.scene.input.KeyCode.RIGHT;
+import static javafx.scene.input.KeyCode.UP;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -13,15 +21,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import static javafx.scene.input.KeyCode.DOWN;
-import static javafx.scene.input.KeyCode.LEFT;
-import static javafx.scene.input.KeyCode.RIGHT;
-import static javafx.scene.input.KeyCode.UP;
-
 
 /**
  * Main class for 'Snake game' application.

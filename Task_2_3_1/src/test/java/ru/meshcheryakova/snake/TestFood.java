@@ -1,12 +1,12 @@
 package ru.meshcheryakova.snake;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for the Food class.
