@@ -1,6 +1,10 @@
 package ru.nsu.meshcheryakova;
 
-import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.DefaultLogger;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import groovy.lang.Binding;
@@ -33,7 +37,7 @@ import ru.nsu.meshcheryakova.dsl.Course;
 import ru.nsu.meshcheryakova.dsl.Group;
 import ru.nsu.meshcheryakova.dsl.Student;
 import ru.nsu.meshcheryakova.dsl.Task;
-import ru.nsu.meshcheryakova.handling.HTMLResults;
+import ru.nsu.meshcheryakova.handling.HtmlResults;
 import ru.nsu.meshcheryakova.handling.StudentInfo;
 import ru.nsu.meshcheryakova.handling.TaskInfo;
 import ru.nsu.meshcheryakova.handling.TestsInfo;
@@ -64,7 +68,7 @@ public class App {
         cc.setScriptBaseClass(DelegatingScript.class.getName());
         GroovyShell sh = new GroovyShell(Main.class.getClassLoader(), new Binding(), cc);
         String fileName = "src/main/resources/configuration.groovy";
-        DelegatingScript script = (DelegatingScript)sh.parse(new File(fileName));
+        DelegatingScript script = (DelegatingScript) sh.parse(new File(fileName));
         Course config = new Course();
         script.setDelegate(config);
         script.run();
@@ -75,8 +79,9 @@ public class App {
             for (Student student : group.getStudents()) {
                 StudentInfo studentInfo = new StudentInfo();
                 studentInfo.setGradeSettings(config.getGradeSettings());
-                File studentDir = new File(String.format("%s/labs/%s/%s", System.getProperty("user.dir"),
-                        group.getNumber(), student.getUsername()));
+                File studentDir = new File(String.format("%s/labs/%s/%s",
+                        System.getProperty("user.dir"), group.getNumber(),
+                        student.getUsername()));
                 deleteDirectory(studentDir);
                 if (downloadRepo(student, group.getNumber())) { // download repository
                     for (Task task : student.getAssignments()) {
@@ -107,8 +112,8 @@ public class App {
                                 }
                             }
                         }
-                        if (!taskInfo.isBuild() || !taskInfo.isDocumentation() ||
-                                !taskInfo.isRunningTests()) {
+                        if (!taskInfo.isBuild() || !taskInfo.isDocumentation()
+                                || !taskInfo.isRunningTests()) {
                             studentInfo.addTask(task, 0);
                         }
                         if (tasksInfo.containsKey(task)) {
@@ -126,7 +131,7 @@ public class App {
             }
             groupsInfo.put(group, groupInfo);
         }
-        HTMLResults.makeReport(groupsInfo, tasksInfo, config);
+        HtmlResults.makeReport(groupsInfo, tasksInfo, config);
     }
 
     /**
@@ -136,10 +141,10 @@ public class App {
      * @param task task to check.
      * @return has the check been passed or not.
      */
-    static private boolean checkStyle(String projectPath, String task) throws IOException,
+    private static boolean checkStyle(String projectPath, String task) throws IOException,
             CheckstyleException {
-        DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.
-                loadConfiguration(String.format("%s/.github/google_checks.xml", projectPath),
+        DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader
+                .loadConfiguration(String.format("%s/.github/google_checks.xml", projectPath),
                         new PropertiesExpander(new Properties()));
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -153,7 +158,7 @@ public class App {
         List<File> javaFiles = new ArrayList<>();
         Files.walk(Paths.get(String.format("%s/%s/src", projectPath, task)), FOLLOW_LINKS)
                 .forEach(file -> {
-                    if(file.toFile().isFile() && file.toFile().getPath().endsWith(".java")){
+                    if (file.toFile().isFile() && file.toFile().getPath().endsWith(".java")) {
                         File javaFile = file.toFile();
                         javaFiles.add(javaFile);
                     }
@@ -171,7 +176,7 @@ public class App {
      *
      * @param path directory path.
      */
-    static private void deleteDirectory(File path) {
+    private static void deleteDirectory(File path) {
         if (path.exists()) {
             File[] files = path.listFiles();
             for (File file : files) {
@@ -215,8 +220,7 @@ public class App {
                     .run();
         } catch (BuildException e) {
             return false;
-        }
-        finally {
+        } finally {
             connection.close();
         }
         return true;
@@ -260,7 +264,7 @@ public class App {
             connection.newBuild()
                     .forTasks("test")
                     .run();
-        } catch (BuildException e) {
+        } catch (BuildException ignored) {
         } finally {
             connection.close();
         }

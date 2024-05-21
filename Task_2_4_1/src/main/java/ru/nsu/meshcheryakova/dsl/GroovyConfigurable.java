@@ -46,12 +46,12 @@ public class GroovyConfigurable extends GroovyObjectSupport {
             MetaProperty metaProperty = getMetaClass().getMetaProperty(val);
             if (metaProperty != null) {
                 Object value = getProperty(val);
-                PostProcessProperty(metaProperty, value);
+                postProcessProperty(metaProperty, value);
             }
         }
         for (MetaProperty metaProperty : getMetaClass().getProperties()) {
             Object value = getProperty(metaProperty.getName());
-            PostProcessProperty(metaProperty, value);
+            postProcessProperty(metaProperty, value);
         }
     }
 
@@ -61,13 +61,13 @@ public class GroovyConfigurable extends GroovyObjectSupport {
      * @param metaProperty the metadata of the property.
      * @param value the object of the property.
      */
-    public void PostProcessProperty(MetaProperty metaProperty, Object value) throws
+    private void postProcessProperty(MetaProperty metaProperty, Object value) throws
             NoSuchFieldException, InstantiationException, IllegalAccessException,
             NoSuchMethodException, InvocationTargetException {
-        if (Collection.class.isAssignableFrom(metaProperty.getType()) &&
-                value instanceof Collection) {
-            ParameterizedType collectionType = (ParameterizedType) getClass().
-                    getDeclaredField(metaProperty.getName()).getGenericType();
+        if (Collection.class.isAssignableFrom(metaProperty.getType())
+                && value instanceof Collection) {
+            ParameterizedType collectionType = (ParameterizedType) getClass()
+                    .getDeclaredField(metaProperty.getName()).getGenericType();
             Class itemClass = (Class) collectionType.getActualTypeArguments()[0];
             if (GroovyConfigurable.class.isAssignableFrom(itemClass)) {
                 Collection collection = (Collection) value;

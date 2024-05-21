@@ -12,7 +12,7 @@ import ru.nsu.meshcheryakova.dsl.Task;
 /**
  * The class to create HTML report.
  */
-public class HTMLResults {
+public class HtmlResults {
     private static HTMLDocument document = new HTMLDocument();
     private static HashMap<Task, HashMap<Student, TaskInfo>> tasksInfo;
     private static HashMap<Group, HashMap<Student, StudentInfo>> groupsInfo;
@@ -25,14 +25,14 @@ public class HTMLResults {
      * @param course course information.
      */
     public static void makeReport(HashMap<Group, HashMap<Student, StudentInfo>> groupsInformation,
-                                  HashMap<Task, HashMap<Student, TaskInfo>> tasksInformation, Course course) {
+                                  HashMap<Task, HashMap<Student, TaskInfo>> tasksInformation,
+                                  Course course) {
         tasksInfo = tasksInformation;
         groupsInfo = groupsInformation;
 
-        String savePath = "src/main/resources/report.html";
-
         Element style = document.createElement("style");
-        style.setTextContent("table, th, td { border: 1px solid #000000; border-collapse: collapse;}");
+        style.setTextContent("table, th, td { border: 1px solid #000000; " +
+                "border-collapse: collapse;}");
         Element head = document.getElementsByTagName("head").get_Item(0);
         head.appendChild(style);
 
@@ -50,9 +50,16 @@ public class HTMLResults {
             createSpace(body);
         }
 
+        String savePath = "src/main/resources/report.html";
         document.save(savePath);
     }
 
+    /**
+     * Create table with task statistic.
+     *
+     * @param task task.
+     * @param body body of the HTML-doc.
+     */
     private static void createTableTaskInfo(Task task, Element body) {
         Element table = document.createElement("table");
 
@@ -110,6 +117,13 @@ public class HTMLResults {
         body.appendChild(table);
     }
 
+    /**
+     * Create table with group statistic.
+     *
+     * @param group group.
+     * @param body body of the HTML-doc.
+     * @param course course information.
+     */
     public static void createTableGroupInfo(Group group, Element body, Course course) {
         Element table = document.createElement("table");
 
@@ -117,7 +131,8 @@ public class HTMLResults {
         table.appendChild(tbody);
 
         Element tr = createTableRow(tbody);
-        Element th = createTableHeader(tr, String.format("General statistics of the group %s", group.getNumber()));
+        Element th = createTableHeader(tr, String.format("General statistics of the group %s",
+                group.getNumber()));
         th.setAttribute("colspan", String.valueOf(course.getTasks().size() + 3));
 
         tr = createTableRow(tbody);
