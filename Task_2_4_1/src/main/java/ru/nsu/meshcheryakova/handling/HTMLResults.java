@@ -12,7 +12,7 @@ import ru.nsu.meshcheryakova.dsl.Task;
 /**
  * The class to create HTML report.
  */
-public class HtmlResults {
+public class HTMLResults {
     private static HTMLDocument document = new HTMLDocument();
     private static HashMap<Task, HashMap<Student, TaskInfo>> tasksInfo;
     private static HashMap<Group, HashMap<Student, StudentInfo>> groupsInfo;
@@ -31,8 +31,8 @@ public class HtmlResults {
         groupsInfo = groupsInformation;
 
         Element style = document.createElement("style");
-        style.setTextContent("table, th, td { border: 1px solid #000000; " +
-                "border-collapse: collapse;}");
+        style.setTextContent("table, th, td { border: 1px solid #000000; "
+                + "border-collapse: collapse;}");
         Element head = document.getElementsByTagName("head").get_Item(0);
         head.appendChild(style);
 

@@ -37,7 +37,7 @@ import ru.nsu.meshcheryakova.dsl.Course;
 import ru.nsu.meshcheryakova.dsl.Group;
 import ru.nsu.meshcheryakova.dsl.Student;
 import ru.nsu.meshcheryakova.dsl.Task;
-import ru.nsu.meshcheryakova.handling.HtmlResults;
+import ru.nsu.meshcheryakova.handling.HTMLResults;
 import ru.nsu.meshcheryakova.handling.StudentInfo;
 import ru.nsu.meshcheryakova.handling.TaskInfo;
 import ru.nsu.meshcheryakova.handling.TestsInfo;
@@ -104,7 +104,8 @@ public class App {
                                         taskInfo.setPoints(0);
                                         studentInfo.addTask(task, 0);
                                     }
-                                    if (checkStyle(String.format("%s/labs/%s/%s", // check code style
+                                    // check code style
+                                    if (checkStyle(String.format("%s/labs/%s/%s",
                                             System.getProperty("user.dir"), group.getNumber(),
                                             student.getUsername()), task.getId())) {
                                         taskInfo.setCheckStyle(true);
@@ -131,7 +132,7 @@ public class App {
             }
             groupsInfo.put(group, groupInfo);
         }
-        HtmlResults.makeReport(groupsInfo, tasksInfo, config);
+        HTMLResults.makeReport(groupsInfo, tasksInfo, config);
     }
 
     /**
@@ -242,8 +243,7 @@ public class App {
                     .run();
         } catch (BuildException e) {
             return false;
-        }
-        finally {
+        } finally {
             connection.close();
         }
         return new File(String.format("%s/build/docs/javadoc/", projectPath)).exists();
