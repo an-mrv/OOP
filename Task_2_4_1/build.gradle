@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'jacoco'
 }
 
 group = 'org.example'
@@ -30,6 +31,12 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }
 
 
