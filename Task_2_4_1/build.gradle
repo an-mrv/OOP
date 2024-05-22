@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation(group: 'com.aspose', name: 'aspose-html', version: '23.11', classifier: 'jdk17')
+    implementation(group: 'com.aspose', name: 'aspose-html', version: '23.11', classifier: 'jdk11')
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
