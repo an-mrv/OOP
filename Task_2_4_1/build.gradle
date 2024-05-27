@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'jacoco'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-releases'
+    }
+    maven {
+        url = uri('https://repository.aspose.com/repo/')
+    }
+}
+
+dependencies {
+    implementation(group: 'com.aspose', name: 'aspose-html', version: '23.11', classifier: 'jdk11')
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.9'
+    implementation "org.gradle:gradle-tooling-api:8.1.1"
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.10'
+    implementation 'com.puppycrawl.tools:checkstyle:10.16.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+
+
